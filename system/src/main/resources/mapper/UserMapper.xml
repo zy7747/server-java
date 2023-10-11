@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.system.dal.mapper.UserMapper">
+
+    <select id="selectUserRole" resultType="com.example.system.dal.entity.UserRoleEntity">
+        SELECT *
+        FROM user_role
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="insertUserRole" parameterType="com.example.system.dal.entity.UserRoleEntity">
+        INSERT INTO user_role(user_id, role_id)
+        VALUES (#{userId}, #{roleId})
+    </insert>
+
+    <delete id="deleteUserRole">
+        DELETE
+        FROM user_role
+        WHERE user_id = #{user_id}
+    </delete>
+</mapper>

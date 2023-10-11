@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--  继承父类  -->
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>server</artifactId>
+        <version>2.7.12</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>framework</artifactId>
+    <packaging>jar</packaging>
+
+    <name>framework</name>
+
+    <dependencies>
+        <!-- 引入父模块中声明的依赖-->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>dependencies</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

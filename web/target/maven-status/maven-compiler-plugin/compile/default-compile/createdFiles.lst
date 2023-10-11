@@ -1,0 +1,14 @@
+com\example\web\dal\dto\video\VideoQueryDTO.class
+com\example\web\dal\dto\video\VideoSaveDTO.class
+com\example\web\dal\entity\VideoEntity.class
+com\example\web\dal\convert\VideoConvertImpl.class
+com\example\web\dal\vo\video\VideoDetailVO.class
+com\example\web\dal\vo\video\VideoExportVO.class
+com\example\web\dal\mapper\VideoMapper.class
+com\example\web\dal\vo\video\VideoListVO.class
+com\example\web\dal\convert\VideoConvert.class
+com\example\web\dal\dto\video\HotVideoListQueryDTO.class
+com\example\web\controller\VideoController.class
+com\example\web\dal\vo\video\VideoPageVO.class
+com\example\web\service\video\VideoService.class
+com\example\web\service\video\VideoServiceImpl.class
