@@ -7,6 +7,7 @@ com\example\framework\dal\dto\BaseParamsDTO.class
 com\example\framework\config\AppDataSourceConfig.class
 com\example\framework\config\WebConfig.class
 com\example\framework\dal\dto\PageParamsDTO.class
+com\example\framework\utils\Task.class
 com\example\framework\config\SystemDataSourceConfig.class
 com\example\framework\config\WebSocketConfig.class
 com\example\framework\common\Result.class

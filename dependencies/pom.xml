@@ -14,7 +14,7 @@
 
     <name>dependencies</name>
 
-    <description>管理整个项目的依赖版本</description>
+    <description>整个项目的依赖版本</description>
 
     <dependencies>
 
@@ -130,6 +130,13 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.22</version>
+        </dependency>
+
+        <!-- 定时任务 -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.3.0</version>
         </dependency>
     </dependencies>
 

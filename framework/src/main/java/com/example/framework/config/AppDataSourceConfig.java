@@ -14,13 +14,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 
 @EnableWebMvc
-@EnableScheduling
 @Configuration
 @MapperScan(basePackages = "com.example.app.dal.mapper", sqlSessionFactoryRef = "db2SqlSessionFactory")
 public class AppDataSourceConfig {

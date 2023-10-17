@@ -1,6 +1,6 @@
 CREATE TABLE `video`
 (
-    `id`             BIGINT NOT NULL COMMENT 'id',
+    `id`             BIGINT  NOT NULL COMMENT 'id',
     `parent_id`      BIGINT                                                       DEFAULT NULL COMMENT '父节点id',
     `video_name`     VARCHAR(255) COLLATE utf8mb4_unicode_ci                      DEFAULT NULL COMMENT '视频名称',
     `title`          VARCHAR(255) COLLATE utf8mb4_unicode_ci                      DEFAULT NULL COMMENT '视频标题',
@@ -25,7 +25,9 @@ CREATE TABLE `video`
     `create_year`    datetime                                                     DEFAULT NULL COMMENT '创作年份',
     `create_time`    datetime                                                     DEFAULT NULL COMMENT '创建时间',
     `update_time`    datetime                                                     DEFAULT NULL COMMENT '更新时间',
-    `is_deleted`     bit(1) NOT NULL                                              DEFAULT b'0' COMMENT '是否删除',
+    `is_deleted`     bit(1)  NOT NULL                                             DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id`      int(10) unsigned                                             DEFAULT NULL COMMENT '租户id',
+    `version`        TINYINT NOT NULL                                             DEFAULT 0 COMMENT '乐观锁',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
