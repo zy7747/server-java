@@ -12,11 +12,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class DictQueryDTO extends PageParamsDTO {
     /**
-     * id
-     */
-    @ApiModelProperty(value = "id")
-    private Long id;
-    /**
      * 父节点id
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题

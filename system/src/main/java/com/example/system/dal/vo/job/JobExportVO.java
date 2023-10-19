@@ -3,6 +3,7 @@ package com.example.system.dal.vo.job;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.example.framework.dal.vo.ExcelParamsVO;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +15,11 @@ import java.util.Date;
 public class JobExportVO extends ExcelParamsVO {
     @ExcelProperty("任务名称")
     private String jobName;
+    /**
+     * 任务编码
+     */
+    @ExcelProperty("任务编码")
+    private String jobCode;
     /**
      * 开始时间
      */

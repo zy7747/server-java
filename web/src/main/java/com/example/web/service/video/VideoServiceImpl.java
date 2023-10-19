@@ -1,5 +1,6 @@
 package com.example.web.service.video;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@DS("web")
 @Service
 public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> implements VideoService {
     @Resource

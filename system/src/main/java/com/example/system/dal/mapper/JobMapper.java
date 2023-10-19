@@ -26,8 +26,13 @@ public interface JobMapper extends BaseMapper<JobEntity> {
     /**
      * 列表查询
      */
-    default List<JobEntity> selectList() {
+    default List<JobEntity> selectList(JobQueryDTO job) {
         QueryWrapper<JobEntity> wrapper = new QueryWrapper<>();
+
+        if (job.getStatus() != null) {
+            wrapper.eq("status", job.getStatus());
+        }
+
         wrapper.orderByDesc("create_time");
         return selectList(wrapper);
     }

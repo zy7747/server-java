@@ -16,8 +16,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.strictInsertFill(metaObject, "createTime", Date.class, new Date());
-        this.strictInsertFill(metaObject, "creator", String.class, "1703257256551550977");
+        strictInsertFill(metaObject, "createTime", Date.class, new Date());
+        strictInsertFill(metaObject, "creator", String.class, "1703257256551550977");
     }
 
     /**
@@ -25,8 +25,9 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
-        this.strictUpdateFill(metaObject, "updater", String.class, "1703257256551550977");
+        strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
+        strictUpdateFill(metaObject, "updater", String.class, "1703257256551550977");
     }
+
 
 }

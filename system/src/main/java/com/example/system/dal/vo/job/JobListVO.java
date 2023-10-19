@@ -19,6 +19,11 @@ public class JobListVO extends BaseParamsVO {
     @ApiModelProperty(value = "任务名称")
     private String jobName;
     /**
+     * 任务编码
+     */
+    @ApiModelProperty(value = "任务编码")
+    private String jobCode;
+    /**
      * 开始时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

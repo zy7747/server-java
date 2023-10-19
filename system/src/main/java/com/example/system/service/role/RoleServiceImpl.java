@@ -65,10 +65,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
 
         roleMapper.selectRoleMenu(id).forEach(item -> {
             MenuEntity menuRow = menuMapper.selectById(item.getMenuId());
-            if (menuRow.getType().equals("menu")) {
-                menuList.add(item.getMenuId());
-            }
-
+            menuList.add(menuRow.getId());
         });
 
         RoleDetailVO roleDetail = RoleConvert.INSTANCE.detail(roleMapper.selectById(id));

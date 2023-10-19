@@ -113,19 +113,35 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
             //如果是修改，找不是自己ID的
             if (item.getId() != null) {
-                wrapper.ne("id", item.getId()).and(i -> i.eq("account", item.getAccount()).or().eq("user", item.getUser()));
-            } else {
-                wrapper.eq("account", item.getAccount()).or().eq("user", item.getUser());
+                wrapper.ne("id", item.getId());
             }
 
             List<UserEntity> userInfo = userMapper.selectList(wrapper);
 
             if (!userInfo.isEmpty()) {
-                for (UserEntity users : userInfo) {
-                    if (users.getAccount().equals(item.getAccount())) {
-                        return Result.fail("账号不可重复");
-                    } else if (users.getUser().equals(item.getUser())) {
-                        return Result.fail("用户名不可重复");
+                for (UserSaveDTO users : userList) {
+                    if (users.getAccount() != null) {
+                        if (Objects.equals(users.getAccount(), item.getAccount())) {
+                            return Result.error("账号已被注册");
+                        }
+                    }
+
+                    if (users.getUser() != null) {
+                        if (Objects.equals(users.getUser(), item.getUser())) {
+                            return Result.error("用户名已被注册");
+                        }
+                    }
+
+                    if (users.getPhone() != null) {
+                        if (Objects.equals(users.getPhone(), item.getPhone())) {
+                            return Result.error("手机号已被注册");
+                        }
+                    }
+
+                    if (users.getEmail() != null) {
+                        if (Objects.equals(users.getEmail(), item.getEmail())) {
+                            return Result.error("邮箱已被注册");
+                        }
                     }
                 }
             }
@@ -135,21 +151,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
         this.saveOrUpdateBatch(user);
 
-        userList.forEach(item -> {
-            //先全部删除
-            userMapper.deleteUserRole(item.getId());
+        //保存角色
+        for (int i = 0; i < userList.size(); i++) {
+            UserSaveDTO item = userList.get(i);
+
+            //先全部删除用户的角色
+            if (item.getId() != null) {
+                userMapper.deleteUserRole(item.getId());
+            }
             if (item.getRoles() != null) {
+                //循环角色列表
                 for (Long role : item.getRoles()) {
                     //将角色数据塞进去
                     UserRoleEntity userRole = new UserRoleEntity();
-                    userRole.setUserId(user.get(0).getId());
+                    userRole.setUserId(user.get(i).getId());
                     userRole.setRoleId(role);
                     //在批量新增
                     userMapper.insertUserRole(userRole);
                 }
             }
-
-        });
+        }
 
 
         return Result.success(user);

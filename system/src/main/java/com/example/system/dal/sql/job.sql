@@ -2,6 +2,7 @@ CREATE TABLE `job`
 (
     `id`               BIGINT                                 NOT NULL COMMENT 'id',
     `job_name`         VARCHAR(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务名称',
+    `job_code`         VARCHAR(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务编码',
     `start_time`       datetime                                                     DEFAULT NULL COMMENT '开始时间',
     `execute_count`    TINYINT                                NOT NULL              DEFAULT '0' COMMENT '执行次数',
     `execute_interval` BIGINT                                 NOT NULL              DEFAULT 0 COMMENT '执行间隔',

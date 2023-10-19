@@ -1,5 +1,6 @@
 package com.example.system.dal.vo.user;
 
+import com.example.system.annotation.Dict;
 import com.example.framework.dal.vo.BaseParamsVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -62,6 +63,7 @@ public class UserPageVO extends BaseParamsVO {
     /**
      * 性别
      */
+    @Dict(code = "user_sex")
     @ApiModelProperty(value = "性别")
     private String sex;
     /**

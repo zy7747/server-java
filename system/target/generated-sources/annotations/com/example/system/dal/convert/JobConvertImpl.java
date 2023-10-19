@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-17T10:13:54+0800",
+    date = "2023-10-19T11:29:23+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class JobConvertImpl implements JobConvert {
@@ -67,6 +67,7 @@ public class JobConvertImpl implements JobConvert {
         jobDetailVO.setTenantId( jobs.getTenantId() );
         jobDetailVO.setVersion( jobs.getVersion() );
         jobDetailVO.setJobName( jobs.getJobName() );
+        jobDetailVO.setJobCode( jobs.getJobCode() );
         jobDetailVO.setStartTime( jobs.getStartTime() );
         jobDetailVO.setExecuteCount( jobs.getExecuteCount() );
         jobDetailVO.setExecuteInterval( jobs.getExecuteInterval() );
@@ -120,6 +121,7 @@ public class JobConvertImpl implements JobConvert {
         jobPageVO.setTenantId( jobEntity.getTenantId() );
         jobPageVO.setVersion( jobEntity.getVersion() );
         jobPageVO.setJobName( jobEntity.getJobName() );
+        jobPageVO.setJobCode( jobEntity.getJobCode() );
         jobPageVO.setStartTime( jobEntity.getStartTime() );
         jobPageVO.setExecuteCount( jobEntity.getExecuteCount() );
         jobPageVO.setExecuteInterval( jobEntity.getExecuteInterval() );
@@ -158,6 +160,7 @@ public class JobConvertImpl implements JobConvert {
         jobListVO.setTenantId( jobEntity.getTenantId() );
         jobListVO.setVersion( jobEntity.getVersion() );
         jobListVO.setJobName( jobEntity.getJobName() );
+        jobListVO.setJobCode( jobEntity.getJobCode() );
         jobListVO.setStartTime( jobEntity.getStartTime() );
         jobListVO.setExecuteCount( jobEntity.getExecuteCount() );
         jobListVO.setExecuteInterval( jobEntity.getExecuteInterval() );
@@ -183,6 +186,7 @@ public class JobConvertImpl implements JobConvert {
         jobEntity.setTenantId( jobSaveDTO.getTenantId() );
         jobEntity.setVersion( jobSaveDTO.getVersion() );
         jobEntity.setJobName( jobSaveDTO.getJobName() );
+        jobEntity.setJobCode( jobSaveDTO.getJobCode() );
         jobEntity.setStartTime( jobSaveDTO.getStartTime() );
         jobEntity.setExecuteCount( jobSaveDTO.getExecuteCount() );
         jobEntity.setExecuteInterval( jobSaveDTO.getExecuteInterval() );
@@ -206,6 +210,7 @@ public class JobConvertImpl implements JobConvert {
         jobExportVO.setUpdateTime( jobEntity.getUpdateTime() );
         jobExportVO.setIsDeleted( jobEntity.getIsDeleted() );
         jobExportVO.setJobName( jobEntity.getJobName() );
+        jobExportVO.setJobCode( jobEntity.getJobCode() );
         jobExportVO.setStartTime( jobEntity.getStartTime() );
         jobExportVO.setExecuteCount( jobEntity.getExecuteCount() );
         jobExportVO.setExecuteInterval( jobEntity.getExecuteInterval() );

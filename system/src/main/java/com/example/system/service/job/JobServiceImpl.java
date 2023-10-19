@@ -3,7 +3,7 @@ package com.example.system.service.job;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Task;
+import com.example.system.utils.Task;
 import com.example.system.dal.convert.JobConvert;
 import com.example.system.dal.dto.job.JobQueryDTO;
 import com.example.system.dal.dto.job.JobSaveDTO;
@@ -12,7 +12,6 @@ import com.example.system.dal.mapper.JobMapper;
 import com.example.system.dal.vo.job.JobDetailVO;
 import com.example.system.dal.vo.job.JobListVO;
 import com.example.system.dal.vo.job.JobPageVO;
-import com.example.system.job.printJob;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
 import org.springframework.stereotype.Service;
@@ -46,7 +45,7 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, JobEntity> implements
      */
     @Override
     public Result<List<JobListVO>> jobListService(JobQueryDTO job) {
-        return Result.success(JobConvert.INSTANCE.list(jobMapper.selectList()));
+        return Result.success(JobConvert.INSTANCE.list(jobMapper.selectList(job)));
     }
 
     /**
@@ -74,12 +73,11 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, JobEntity> implements
             //新增定时器
             if (jobItem.getId() == null) {
                 try {
-                    Task.addTask(printJob.class, jobItem.getJobName(), jobItem.getJobName(), jobItem.getExecuteInterval().intValue());
+                    Task.addTask(jobItem.getJobCode(), jobItem.getExecuteInterval().intValue());
                 } catch (SchedulerException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-
         }
 
         List<JobEntity> jobList = JobConvert.INSTANCE.saveList(job);
@@ -99,23 +97,9 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, JobEntity> implements
             //如果要改变的状态为运行
             if (jobItem.getStatus().equals("run")) {
                 try {
-                    Task.runTask(jobItem.getJobName(), jobItem.getJobName());
+                    Task.runTask(jobItem.getJobName());
                     //重新定义开始时间
                     jobItem.setStartTime(new Date());
-                } catch (SchedulerException e) {
-                    e.printStackTrace();
-                }
-                //如果要改变的状态为暂停
-            } else if (jobItem.getStatus().equals("paused")) {
-                try {
-                    Task.stopTask(jobItem.getJobName(), jobItem.getJobName());
-                } catch (SchedulerException e) {
-                    e.printStackTrace();
-                }
-                //如果要改变的状态为暂停
-            } else if (jobItem.getStatus().equals("unStarted")) {
-                try {
-                    Task.stopTask(jobItem.getJobName(), jobItem.getJobName());
                 } catch (SchedulerException e) {
                     e.printStackTrace();
                 }
