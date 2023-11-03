@@ -8,6 +8,9 @@ import java.util.Map;
 
 @Data
 public class HotVideoListQueryDTO {
+    @ApiModelProperty(value = "所有集合")
+    private Map<String, Object> all = new HashMap<>();
+
     @ApiModelProperty(value = "动漫集合")
     private Map<String, Object> anime = new HashMap<>();
 
@@ -25,11 +28,4 @@ public class HotVideoListQueryDTO {
 
     @ApiModelProperty(value = "短视频集合")
     private Map<String, Object> shorts = new HashMap<>();
-
-    @ApiModelProperty(value = "直播集合")
-    private Map<String, Object> live = new HashMap<>();
-
-    @ApiModelProperty(value = "所有集合")
-    private Map<String, Object> all = new HashMap<>();
-
 }

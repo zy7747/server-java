@@ -1,5 +1,6 @@
 package com.example.system.dal.mapper;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -13,12 +14,46 @@ import java.util.List;
 
 @Mapper
 public interface FileMapper extends BaseMapper<FileEntity> {
+    default QueryWrapper<FileEntity> search(FileQueryDTO file) {
+        QueryWrapper<FileEntity> wrapper = new QueryWrapper<>();
+
+        /* url地址 */
+        if (!StrUtil.hasBlank(file.getUrl())) {
+            wrapper.eq("url", file.getUrl());
+        }
+        /* 文件类型 */
+        if (!StrUtil.hasBlank(file.getFileType())) {
+            wrapper.eq("file_type", file.getFileType());
+        }
+        /* 文件路径 */
+        if (!StrUtil.hasBlank(file.getFilePath())) {
+            wrapper.eq("file_path", file.getFilePath());
+        }
+        /* 状态 */
+        if (!StrUtil.hasBlank(file.getStatus())) {
+            wrapper.eq("status", file.getStatus());
+        }
+        /* 备注 */
+        if (!StrUtil.hasBlank(file.getRemark())) {
+            wrapper.eq("remark", file.getRemark());
+        }
+        /* 创建人 */
+        if (!StrUtil.hasBlank(file.getCreator())) {
+            wrapper.eq("creator", file.getCreator());
+        }
+        /* 更新人 */
+        if (!StrUtil.hasBlank(file.getUpdater())) {
+            wrapper.eq("updater", file.getUpdater());
+        }
+        wrapper.orderByDesc("create_time");
+        return wrapper;
+    }
+
     //分页
     default PageList<FileEntity> selectPage(FileQueryDTO file) {
         IPage<FileEntity> pageParams = new Page<>(file.getPage(), file.getSize());
-        QueryWrapper<FileEntity> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("create_time");
-        return PageList.setPages(selectPage(pageParams, wrapper));
+
+        return PageList.setPages(selectPage(pageParams, search(file)));
     }
 
     //列表查询
@@ -36,8 +71,6 @@ public interface FileMapper extends BaseMapper<FileEntity> {
 
     //列表查询
     default List<FileEntity> selectList(FileQueryDTO file) {
-        QueryWrapper<FileEntity> wrapper = new QueryWrapper<>();
-
-        return selectList(wrapper);
+        return selectList(search(file));
     }
 }

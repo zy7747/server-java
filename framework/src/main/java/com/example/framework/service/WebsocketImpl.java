@@ -1,5 +1,6 @@
-package com.example.framework.common;
+package com.example.framework.service;
 
+import com.example.framework.common.Result;
 import com.example.framework.dal.dto.SendMessageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 @ServerEndpoint("/websocket/{userId}")
 public class WebsocketImpl {
-    private static ConcurrentHashMap<String, WebsocketImpl> websocketMap = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, WebsocketImpl> websocketMap = new ConcurrentHashMap<>();
 
     /**
      * 当前连接数
      */
-    private static AtomicInteger count = new AtomicInteger(0);
+    private static final AtomicInteger count = new AtomicInteger(0);
 
     /**
      * 与某个客户端的连接会话，需要通过它来给客户端发送数据

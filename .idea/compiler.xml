@@ -12,10 +12,12 @@
         <module name="framework" />
         <module name="web" />
         <module name="dependencies" />
+        <module name="booting" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="app" target="1.8" />
+      <module name="booting" target="1.8" />
       <module name="dependencies" target="1.8" />
       <module name="framework" target="1.8" />
       <module name="server" target="1.8" />
@@ -26,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="app" options="-parameters" />
+      <module name="booting" options="-parameters" />
       <module name="dependencies" options="-parameters" />
       <module name="framework" options="-parameters" />
       <module name="system" options="-parameters" />

@@ -146,7 +146,7 @@
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.mchange:mchange-commons-java:0.2.15" level="project" />
     <orderEntry type="module" module-name="framework" />
-    <orderEntry type="module" module-name="app" />
     <orderEntry type="module" module-name="web" />
+    <orderEntry type="module" module-name="app" />
   </component>
 </module>

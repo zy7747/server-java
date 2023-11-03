@@ -13,12 +13,17 @@ public class MyJob implements Job {
         String jobName = context.getJobDetail().getKey().getName();
         //打印测试
         if (jobName.equals("PrintJob")) {
-            new PrintJob().printTest();
+            new PrintJob().printTest("打印任务执行时间：");
         }
 
         //清除没有用的数据
         if (jobName.equals("ClearDataJob")) {
-            new ClearDataJob().clearRole();
+            ClearDataJob clearDataJo = new ClearDataJob();
+            clearDataJo.clearRole();
+            clearDataJo.clearMenu();
+            clearDataJo.clearUser();
+            clearDataJo.clearDict();
+            new PrintJob().printTest("定时清理任务执行时间：");
         }
     }
 }

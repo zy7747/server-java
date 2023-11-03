@@ -16,6 +16,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
+        metaObject.setValue("createTime", null);
+        metaObject.setValue("creator", null);
         strictInsertFill(metaObject, "createTime", Date.class, new Date());
         strictInsertFill(metaObject, "creator", String.class, "1703257256551550977");
     }
@@ -25,9 +27,9 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
+        metaObject.setValue("updateTime", null);
+        metaObject.setValue("updater", null);
         strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
         strictUpdateFill(metaObject, "updater", String.class, "1703257256551550977");
     }
-
-
 }

@@ -82,8 +82,11 @@ public class DictController {
             if (item.getParentId() == null) {
                 //查询出所有子项
                 QueryWrapper<DictEntity> wrapperId = new QueryWrapper<>();
+
                 wrapperId.eq("parent_id", item.getId());
+
                 List<DictEntity> dictList = dictMapper.selectList(wrapperId);
+
                 //有子项先删除子项
                 dictList.forEach(items -> dictMapper.deleteById(items.getId()));
             }

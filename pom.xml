@@ -27,6 +27,7 @@
         <module>web</module>
         <module>dependencies</module>
         <module>framework</module>
+        <module>booting</module>
     </modules>
 
     <!--  版本  -->
@@ -45,6 +46,13 @@
                 <version>${version}</version>
             </dependency>
 
+            <!-- 启动项模块 -->
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>booting</artifactId>
+                <version>${version}</version>
+            </dependency>
+
             <!-- 公共模块 -->
             <dependency>
                 <groupId>com.example</groupId>
@@ -52,7 +60,7 @@
                 <version>${version}</version>
             </dependency>
 
-            <!-- 系统模块 -->
+            <!-- system模块 -->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>system</artifactId>
@@ -66,7 +74,7 @@
                 <version>${version}</version>
             </dependency>
 
-            <!-- 网站模块 -->
+            <!-- web模块 -->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>web</artifactId>

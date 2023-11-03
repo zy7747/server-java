@@ -2,10 +2,12 @@ package com.example.web.dal.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.framework.dal.entity.BaseParamsEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -102,6 +104,8 @@ public class VideoEntity extends BaseParamsEntity {
     /**
      * 创作年份
      */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty(value = "创作年份")
     private Date createYear;
 }

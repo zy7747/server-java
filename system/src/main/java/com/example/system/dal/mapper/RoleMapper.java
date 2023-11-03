@@ -1,5 +1,6 @@
 package com.example.system.dal.mapper;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -17,20 +18,35 @@ import java.util.List;
 
 @Mapper
 public interface RoleMapper extends BaseMapper<RoleEntity> {
+    default QueryWrapper<RoleEntity> search(RoleQueryDTO role) {
+        QueryWrapper<RoleEntity> wrapper = new QueryWrapper<>();
+
+        /* 角色名称 */
+        if (!StrUtil.hasBlank(role.getRoleName())) {
+            wrapper.eq("role_name", role.getRoleName());
+        }
+        /* 角色编码 */
+        if (!StrUtil.hasBlank(role.getRoleCode())) {
+            wrapper.eq("role_code", role.getRoleCode());
+        }
+        /* 状态 */
+        if (!StrUtil.hasBlank(role.getStatus())) {
+            wrapper.eq("status", role.getStatus());
+        }
+        wrapper.orderByDesc("create_time");
+        return wrapper;
+    }
+
     //分页
     default PageList<RoleEntity> selectPage(RoleQueryDTO role) {
         IPage<RoleEntity> pageParams = new Page<>(role.getPage(), role.getSize());
-        QueryWrapper<RoleEntity> wrapper = new QueryWrapper<>();
 
-        wrapper.orderByDesc("create_time");
-
-        return PageList.setPages(this.selectPage(pageParams, wrapper));
+        return PageList.setPages(this.selectPage(pageParams, search(role)));
     }
 
     //列表查询
     default List<RoleEntity> selectList(RoleQueryDTO role) {
-        QueryWrapper<RoleEntity> wrapper = new QueryWrapper<>();
-        return selectList(wrapper);
+        return selectList(search(role));
     }
 
     @Select("SELECT * FROM role_menu WHERE role_id = #{roleId}")
@@ -39,9 +55,12 @@ public interface RoleMapper extends BaseMapper<RoleEntity> {
     @Insert("INSERT INTO role_menu(role_id, menu_id) VALUES (#{roleId}, #{menuId})")
     void insertRoleMenu(RoleMenuEntity roleMenu);
 
-    @Delete(" DELETE FROM role_menu WHERE role_id= #{roleId}")
+    @Delete("DELETE FROM role_menu WHERE role_id = #{roleId}")
     void deleteRoleMenu(Long roleId);
 
-    @Delete(" DELETE FROM user_role WHERE role_id= #{roleId}")
+    @Delete("DELETE FROM role WHERE is_deleted = 1")
+    void clearRole();
+
+    @Delete("DELETE FROM user_role WHERE role_id = #{roleId}")
     void deleteUserRole(Long roleId);
 }

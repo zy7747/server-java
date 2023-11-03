@@ -1,10 +1,13 @@
 package com.example.app.dal.vo.audio;
 
 import com.example.framework.dal.vo.BaseParamsVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.Date;
 
 @Data
 @ApiModel(value = "列表查询结果")
@@ -95,4 +98,10 @@ public class AudioListVO extends BaseParamsVO {
      */
     @ApiModelProperty(value = "播放量")
     private Integer playNum;
+    /**
+     * 创作年份
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @ApiModelProperty(value = "创作年份")
+    private Date createYear;
 }

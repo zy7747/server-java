@@ -1,5 +1,6 @@
 package com.example.system.service.user;
 
+import cn.hutool.core.util.StrUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -24,7 +25,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -119,7 +119,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             List<UserEntity> userInfo = userMapper.selectList(wrapper);
 
             if (!userInfo.isEmpty()) {
-                for (UserSaveDTO users : userList) {
+                for (UserEntity users : userInfo) {
                     if (users.getAccount() != null) {
                         if (Objects.equals(users.getAccount(), item.getAccount())) {
                             return Result.error("账号已被注册");
@@ -189,9 +189,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         //登录方式判断
         switch (loginInfo.getLoginType()) {
             case "account":
-                if (loginInfo.getAccount() == null || loginInfo.getAccount().equals("")) {
+                if (StrUtil.hasBlank(loginInfo.getAccount())) {
                     return Result.fail("账号不能为空");
-                } else if (loginInfo.getPassword() == null || loginInfo.getPassword().equals("")) {
+                } else if (StrUtil.hasBlank(loginInfo.getPassword())) {
                     return Result.fail("密码不能为空");
                 }
                 wrapper.eq("account", loginInfo.getAccount()).and(i -> i.eq("password", loginInfo.getPassword()));
@@ -206,6 +206,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
         //查询数据
         UserEntity userInfo = userMapper.selectOne(wrapper);
+
         //返回用户信息
         if (userInfo != null) {
             UserInfoVO userInfoVo = new UserInfoVO();
@@ -217,11 +218,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             userInfoVo.setUserInfo(userInfo);
 
             //3.注入角色列表
+            //3.1获取该用户所有角色
             List<UserRoleEntity> roleList = userMapper.selectUserRole(userInfo.getId());
             List<RoleEntity> role = new ArrayList<>();
             List<MenuEntity> menus = new ArrayList<>();
+            //根据不同登录系统获取不同的菜单
+            String LoginSystem = loginInfo.getLoginSystem();
 
             roleList.forEach(item -> {
+                //插入角色
                 role.add(roleMapper.selectById(item.getRoleId()));
 
                 List<RoleMenuEntity> roleMenuList = roleMapper.selectRoleMenu(item.getRoleId());
@@ -230,22 +235,34 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             });
 
             userInfoVo.setRoles(role);
+            //系统菜单
+            List<MenuEntity> systemMenu = new ArrayList<>();
 
-
-            Set<Long> idSet = new HashSet<>();
-
-            List<MenuEntity> menuList = menus.stream()
-                    .filter(menu -> idSet.add(menu.getId()))
-                    .collect(Collectors.toList());
+            for (MenuEntity menu : menus) {
+                if (menu.getType().equals("system") && menu.getPath().equals(LoginSystem)) {
+                    getTree(menus, menu.getId(), systemMenu);
+                }
+            }
 
             //4.注入菜单
-            userInfoVo.setMenuList(menuList);
+            userInfoVo.setMenuList(systemMenu);
 
             return Result.success(userInfoVo);
         } else {
             return Result.fail("登录失败,请检查账号密码是否正确");
         }
     }
+
+
+    public void getTree(List<MenuEntity> menus, Long pid, List<MenuEntity> systemMenu) {
+        for (MenuEntity menu : menus) {
+            if (pid.equals(menu.getParentId())) {
+                systemMenu.add(menu);
+                getTree(menus, menu.getId(), systemMenu);
+            }
+        }
+    }
+
 
     /**
      * 注册接口

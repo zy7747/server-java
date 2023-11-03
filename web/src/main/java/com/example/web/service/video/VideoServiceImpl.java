@@ -1,7 +1,6 @@
 package com.example.web.service.video;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
@@ -106,12 +105,12 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> impl
      */
     @Override
     public Result<HotVideoListQueryDTO> hotVideoService() {
-        QueryWrapper<VideoEntity> wrapper = new QueryWrapper<>();
-
-        wrapper.isNull("parent_id");
+        VideoQueryDTO video = new VideoQueryDTO();
+        //4.从大到小排序
+        video.setSortWay("playNum");
 
         //1.查询出所有视频
-        List<VideoEntity> videoList = videoMapper.selectList(wrapper);
+        List<VideoEntity> videoList = videoMapper.selectList(video);
 
         //2.创建要返回的参数类型
         HotVideoListQueryDTO hv = new HotVideoListQueryDTO();
@@ -124,10 +123,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> impl
         ArrayList<Object> tv = new ArrayList<>();
         ArrayList<Object> original = new ArrayList<>();
         ArrayList<Object> shorts = new ArrayList<>();
-        ArrayList<Object> live = new ArrayList<>();
 
-        //4.从大到小排序
-        videoList.sort((min, max) -> max.getPlayNum() - min.getPlayNum());
 
         //5.取播出各自放量前十的视频
         videoList.forEach(i -> {
@@ -139,20 +135,21 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> impl
                 Variety.add(i);
             } else if (i.getType().equals("tv") && tv.size() < 10) {
                 tv.add(i);
-            } else if (i.getType().equals("originalVideo") && original.size() < 10) {
+            } else if (i.getType().equals("original") && original.size() < 10) {
                 original.add(i);
-            } else if (i.getType().equals("shortVideo") && shorts.size() < 10) {
+            } else if (i.getType().equals("shorts") && shorts.size() < 10) {
                 shorts.add(i);
-            } else if (i.getType().equals("live") && live.size() < 10) {
-                live.add(i);
             }
 
-            if (all.size() < 8) {
+            if (all.size() < 10) {
                 all.add(i);
             }
         });
 
         //6.将数据放入指定栏位
+        hv.getAll().put("title", "全部热门");
+        hv.getAll().put("videoList", all);
+
         hv.getAnime().put("title", "动漫");
         hv.getAnime().put("videoList", anime);
 
@@ -171,11 +168,6 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> impl
         hv.getShorts().put("title", "短视频");
         hv.getShorts().put("videoList", shorts);
 
-        hv.getLive().put("title", "直播");
-        hv.getLive().put("videoList", live);
-
-        hv.getAll().put("title", "全部热门");
-        hv.getAll().put("videoList", all);
 
         return Result.success(hv);
     }

@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-19T11:29:20+0800",
+    date = "2023-11-03T09:08:38+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class AudioConvertImpl implements AudioConvert {
@@ -83,6 +83,7 @@ public class AudioConvertImpl implements AudioConvert {
         audioDetailVO.setStarsNum( audios.getStarsNum() );
         audioDetailVO.setCollectionNum( audios.getCollectionNum() );
         audioDetailVO.setPlayNum( audios.getPlayNum() );
+        audioDetailVO.setCreateYear( audios.getCreateYear() );
 
         return audioDetailVO;
     }
@@ -149,6 +150,7 @@ public class AudioConvertImpl implements AudioConvert {
         audioPageVO.setStarsNum( audioEntity.getStarsNum() );
         audioPageVO.setCollectionNum( audioEntity.getCollectionNum() );
         audioPageVO.setPlayNum( audioEntity.getPlayNum() );
+        audioPageVO.setCreateYear( audioEntity.getCreateYear() );
 
         return audioPageVO;
     }
@@ -200,6 +202,7 @@ public class AudioConvertImpl implements AudioConvert {
         audioListVO.setStarsNum( audioEntity.getStarsNum() );
         audioListVO.setCollectionNum( audioEntity.getCollectionNum() );
         audioListVO.setPlayNum( audioEntity.getPlayNum() );
+        audioListVO.setCreateYear( audioEntity.getCreateYear() );
 
         return audioListVO;
     }
@@ -238,6 +241,7 @@ public class AudioConvertImpl implements AudioConvert {
         audioEntity.setStarsNum( audioSaveDTO.getStarsNum() );
         audioEntity.setCollectionNum( audioSaveDTO.getCollectionNum() );
         audioEntity.setPlayNum( audioSaveDTO.getPlayNum() );
+        audioEntity.setCreateYear( audioSaveDTO.getCreateYear() );
 
         return audioEntity;
     }

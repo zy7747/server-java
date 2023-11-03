@@ -1,5 +1,6 @@
 package com.example.system.dal.mapper;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -7,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.framework.common.PageList;
 import com.example.system.dal.dto.dict.DictQueryDTO;
 import com.example.system.dal.entity.DictEntity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
@@ -15,34 +17,59 @@ import java.util.Map;
 
 @Mapper
 public interface DictMapper extends BaseMapper<DictEntity> {
+    default QueryWrapper<DictEntity> search(DictQueryDTO dict) {
+        QueryWrapper<DictEntity> wrapper = new QueryWrapper<>();
+
+        /* 字典名称 */
+        if (!StrUtil.hasBlank(dict.getDictName())) {
+            wrapper.eq("dict_name", dict.getDictName());
+        }
+        /* 字典编码 */
+        if (!StrUtil.hasBlank(dict.getDictCode())) {
+            wrapper.eq("dict_code", dict.getDictCode());
+        }
+        /* 字典类型 */
+        if (!StrUtil.hasBlank(dict.getDictType())) {
+            wrapper.eq("dict_type", dict.getDictType());
+        }
+        /* 名 */
+        if (!StrUtil.hasBlank(dict.getLabel())) {
+            wrapper.eq("label", dict.getLabel());
+        }
+        /* 值 */
+        if (!StrUtil.hasBlank(dict.getValue())) {
+            wrapper.eq("value", dict.getValue());
+        }
+        /* 自定义颜色 */
+        if (!StrUtil.hasBlank(dict.getColor())) {
+            wrapper.eq("color", dict.getColor());
+        }
+        /* 自定义CSS样式 */
+        if (!StrUtil.hasBlank(dict.getCss())) {
+            wrapper.eq("css", dict.getCss());
+        }
+        /* 其他参数 */
+        if (!StrUtil.hasBlank(dict.getParams())) {
+            wrapper.eq("params", dict.getParams());
+        }
+        /* 状态 */
+        if (!StrUtil.hasBlank(dict.getStatus())) {
+            wrapper.eq("status", dict.getStatus());
+        }
+        wrapper.orderByDesc("create_time");
+        return wrapper;
+    }
+
     //分页
     default PageList<DictEntity> selectPage(DictQueryDTO dict) {
         IPage<DictEntity> pageParams = new Page<>(dict.getPage(), dict.getSize());
-        QueryWrapper<DictEntity> wrapper = new QueryWrapper<>();
 
-        if (dict.getDictCode() != null) {
-            wrapper.eq("dict_code", dict.getDictCode());
-        }
-
-        if (dict.getDictName() != null) {
-            wrapper.eq("dict_name", dict.getDictName());
-        }
-
-        if (dict.getStatus() != null) {
-            wrapper.eq("status", dict.getStatus());
-        }
-
-        wrapper.isNull("parent_id");
-
-        wrapper.orderByDesc("create_time");
-
-        return PageList.setPages(selectPage(pageParams, wrapper));
+        return PageList.setPages(selectPage(pageParams, search(dict).isNull("parent_id")));
     }
 
     //列表查询
     default List<DictEntity> selectList(DictQueryDTO dict) {
-        QueryWrapper<DictEntity> wrapper = new QueryWrapper<>();
-        return selectList(wrapper);
+        return selectList(search(dict));
     }
 
     //子集列表查询
@@ -82,6 +109,8 @@ public interface DictMapper extends BaseMapper<DictEntity> {
             //寻找子集
             wrapper.eq("parent_id", item.getId());
 
+            wrapper.orderByAsc("sort");
+
             List<DictEntity> subset = selectList(wrapper);
 
             subset.forEach(map -> map.setDictType(item.getDictType()));
@@ -91,4 +120,7 @@ public interface DictMapper extends BaseMapper<DictEntity> {
 
         return allDictList;
     }
+
+    @Delete("DELETE FROM dict WHERE is_deleted = 1")
+    void clearDict();
 }
