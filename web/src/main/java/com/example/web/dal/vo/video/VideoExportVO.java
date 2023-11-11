@@ -76,16 +76,6 @@ public class VideoExportVO extends ExcelParamsVO {
     @ExcelProperty("时长")
     private Integer duration;
     /**
-     * 点赞量
-     */
-    @ExcelProperty("点赞量")
-    private Integer starsNum;
-    /**
-     * 收藏量
-     */
-    @ExcelProperty("收藏量")
-    private Integer collectionNum;
-    /**
      * 播放量
      */
     @ExcelProperty("播放量")

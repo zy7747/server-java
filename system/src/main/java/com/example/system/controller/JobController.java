@@ -64,13 +64,13 @@ public class JobController {
 
     @PostMapping("/changeJobStatus")
     @ApiOperation(value = "修改定时器状态")
-    public Result<Object> changeJobStatusService(@RequestBody @Valid List<JobSaveDTO> jobs) {
+    public Result<Object> changeJobStatus(@RequestBody @Valid List<JobSaveDTO> jobs) {
         return jobService.changeJobStatusService(jobs);
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
-    public Result<Object> jobDelete(@RequestBody List<JobEntity> ids) {
+    public Result<Object> jobDelete(@RequestBody List<JobQueryDTO> ids) {
         ids.forEach(item -> jobMapper.deleteById(item.getId()));
         return Result.success("删除成功");
     }

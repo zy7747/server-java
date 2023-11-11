@@ -86,7 +86,6 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, DictEntity> impleme
     @Override
     public Result<List<DictEntity>> saveListService(List<DictSaveDTO> dict) {
         List<DictEntity> dictList = DictConvert.INSTANCE.saveList(dict);
-        log.info(dictList.toString());
         this.saveOrUpdateBatch(dictList);
         return Result.success(dictList);
     }

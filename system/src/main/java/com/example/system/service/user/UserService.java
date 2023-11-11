@@ -62,4 +62,12 @@ public interface UserService {
      * @return 用户信息
      */
     Result<Object> signUpService(SignUpDTO signUpInfo);
+
+    /**
+     * 通过token或者其他信息获取用户信息
+     *
+     * @param user 用户信息
+     * @return 用户信息
+     */
+    Result<UserInfoVO> userInfo(UserEntity user, String loginSystem, String token);
 }

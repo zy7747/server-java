@@ -49,8 +49,11 @@ public interface RoleMapper extends BaseMapper<RoleEntity> {
         return selectList(search(role));
     }
 
-    @Select("SELECT * FROM role_menu WHERE role_id = #{roleId}")
+    @Select("SELECT * FROM role_menu")
     List<RoleMenuEntity> selectRoleMenu(Long roleId);
+
+    @Select("SELECT * FROM role_menu")
+    List<RoleMenuEntity> selectRoleMenuList();
 
     @Insert("INSERT INTO role_menu(role_id, menu_id) VALUES (#{roleId}, #{menuId})")
     void insertRoleMenu(RoleMenuEntity roleMenu);

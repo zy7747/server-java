@@ -2,6 +2,7 @@ package com.example.system.dal.vo.user;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.example.framework.dal.vo.ExcelParamsVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -75,11 +76,7 @@ public class UserExportVO extends ExcelParamsVO {
     /**
      * 出生日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @ExcelProperty("出生日期")
     private Date birthDate;
-    /**
-     * 最后登录IP
-     */
-    @ExcelProperty("最后登录IP")
-    private String loginIp;
 }

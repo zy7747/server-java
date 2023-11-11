@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-03T09:08:36+0800",
+    date = "2023-11-10T19:55:33+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class VideoConvertImpl implements VideoConvert {
@@ -80,8 +80,6 @@ public class VideoConvertImpl implements VideoConvert {
         videoDetailVO.setSeason( videos.getSeason() );
         videoDetailVO.setEpisode( videos.getEpisode() );
         videoDetailVO.setDuration( videos.getDuration() );
-        videoDetailVO.setStarsNum( videos.getStarsNum() );
-        videoDetailVO.setCollectionNum( videos.getCollectionNum() );
         videoDetailVO.setPlayNum( videos.getPlayNum() );
         videoDetailVO.setCreateYear( videos.getCreateYear() );
 
@@ -147,8 +145,6 @@ public class VideoConvertImpl implements VideoConvert {
         videoPageVO.setSeason( videoEntity.getSeason() );
         videoPageVO.setEpisode( videoEntity.getEpisode() );
         videoPageVO.setDuration( videoEntity.getDuration() );
-        videoPageVO.setStarsNum( videoEntity.getStarsNum() );
-        videoPageVO.setCollectionNum( videoEntity.getCollectionNum() );
         videoPageVO.setPlayNum( videoEntity.getPlayNum() );
         videoPageVO.setCreateYear( videoEntity.getCreateYear() );
 
@@ -199,8 +195,6 @@ public class VideoConvertImpl implements VideoConvert {
         videoListVO.setSeason( videoEntity.getSeason() );
         videoListVO.setEpisode( videoEntity.getEpisode() );
         videoListVO.setDuration( videoEntity.getDuration() );
-        videoListVO.setStarsNum( videoEntity.getStarsNum() );
-        videoListVO.setCollectionNum( videoEntity.getCollectionNum() );
         videoListVO.setPlayNum( videoEntity.getPlayNum() );
         videoListVO.setCreateYear( videoEntity.getCreateYear() );
 
@@ -237,8 +231,6 @@ public class VideoConvertImpl implements VideoConvert {
         videoEntity.setSeason( videoSaveDTO.getSeason() );
         videoEntity.setEpisode( videoSaveDTO.getEpisode() );
         videoEntity.setDuration( videoSaveDTO.getDuration() );
-        videoEntity.setStarsNum( videoSaveDTO.getStarsNum() );
-        videoEntity.setCollectionNum( videoSaveDTO.getCollectionNum() );
         videoEntity.setPlayNum( videoSaveDTO.getPlayNum() );
         videoEntity.setAuthor( videoSaveDTO.getAuthor() );
         videoEntity.setCreateYear( videoSaveDTO.getCreateYear() );
@@ -274,8 +266,6 @@ public class VideoConvertImpl implements VideoConvert {
         videoExportVO.setSeason( videoEntity.getSeason() );
         videoExportVO.setEpisode( videoEntity.getEpisode() );
         videoExportVO.setDuration( videoEntity.getDuration() );
-        videoExportVO.setStarsNum( videoEntity.getStarsNum() );
-        videoExportVO.setCollectionNum( videoEntity.getCollectionNum() );
         videoExportVO.setPlayNum( videoEntity.getPlayNum() );
 
         return videoExportVO;

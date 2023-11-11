@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-03T09:08:38+0800",
+    date = "2023-11-10T19:55:40+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class AudioConvertImpl implements AudioConvert {
@@ -80,8 +80,6 @@ public class AudioConvertImpl implements AudioConvert {
         audioDetailVO.setComposing( audios.getComposing() );
         audioDetailVO.setLyrics( audios.getLyrics() );
         audioDetailVO.setDuration( audios.getDuration() );
-        audioDetailVO.setStarsNum( audios.getStarsNum() );
-        audioDetailVO.setCollectionNum( audios.getCollectionNum() );
         audioDetailVO.setPlayNum( audios.getPlayNum() );
         audioDetailVO.setCreateYear( audios.getCreateYear() );
 
@@ -147,8 +145,6 @@ public class AudioConvertImpl implements AudioConvert {
         audioPageVO.setComposing( audioEntity.getComposing() );
         audioPageVO.setLyrics( audioEntity.getLyrics() );
         audioPageVO.setDuration( audioEntity.getDuration() );
-        audioPageVO.setStarsNum( audioEntity.getStarsNum() );
-        audioPageVO.setCollectionNum( audioEntity.getCollectionNum() );
         audioPageVO.setPlayNum( audioEntity.getPlayNum() );
         audioPageVO.setCreateYear( audioEntity.getCreateYear() );
 
@@ -199,8 +195,6 @@ public class AudioConvertImpl implements AudioConvert {
         audioListVO.setComposing( audioEntity.getComposing() );
         audioListVO.setLyrics( audioEntity.getLyrics() );
         audioListVO.setDuration( audioEntity.getDuration() );
-        audioListVO.setStarsNum( audioEntity.getStarsNum() );
-        audioListVO.setCollectionNum( audioEntity.getCollectionNum() );
         audioListVO.setPlayNum( audioEntity.getPlayNum() );
         audioListVO.setCreateYear( audioEntity.getCreateYear() );
 
@@ -238,8 +232,6 @@ public class AudioConvertImpl implements AudioConvert {
         audioEntity.setComposing( audioSaveDTO.getComposing() );
         audioEntity.setLyrics( audioSaveDTO.getLyrics() );
         audioEntity.setDuration( audioSaveDTO.getDuration() );
-        audioEntity.setStarsNum( audioSaveDTO.getStarsNum() );
-        audioEntity.setCollectionNum( audioSaveDTO.getCollectionNum() );
         audioEntity.setPlayNum( audioSaveDTO.getPlayNum() );
         audioEntity.setCreateYear( audioSaveDTO.getCreateYear() );
 
@@ -275,8 +267,6 @@ public class AudioConvertImpl implements AudioConvert {
         audioExportVO.setComposing( audioEntity.getComposing() );
         audioExportVO.setLyrics( audioEntity.getLyrics() );
         audioExportVO.setDuration( audioEntity.getDuration() );
-        audioExportVO.setStarsNum( audioEntity.getStarsNum() );
-        audioExportVO.setCollectionNum( audioEntity.getCollectionNum() );
         audioExportVO.setPlayNum( audioEntity.getPlayNum() );
 
         return audioExportVO;

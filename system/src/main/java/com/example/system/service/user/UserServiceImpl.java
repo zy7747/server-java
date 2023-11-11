@@ -1,13 +1,13 @@
 package com.example.system.service.user;
 
 import cn.hutool.core.util.StrUtil;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
 import com.example.system.dal.convert.UserConvert;
+import com.example.system.dal.dto.menu.MenuQueryDTO;
+import com.example.system.dal.dto.role.RoleQueryDTO;
 import com.example.system.dal.dto.user.LoginDTO;
 import com.example.system.dal.dto.user.SignUpDTO;
 import com.example.system.dal.dto.user.UserQueryDTO;
@@ -20,11 +20,14 @@ import com.example.system.dal.vo.user.UserDetailVO;
 import com.example.system.dal.vo.user.UserInfoVO;
 import com.example.system.dal.vo.user.UserListVO;
 import com.example.system.dal.vo.user.UserPageVO;
+import com.example.system.utils.GetMenuList;
+import com.example.system.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -108,56 +111,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
      */
     @Override
     public Result<List<UserEntity>> saveListService(List<UserSaveDTO> userList) {
-        //唯一性校验
-        for (UserSaveDTO item : userList) {
-            QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
-            //如果是修改，找不是自己ID的
-            if (item.getId() != null) {
-                wrapper.ne("id", item.getId());
-            }
-
-            List<UserEntity> userInfo = userMapper.selectList(wrapper);
-
-            if (!userInfo.isEmpty()) {
-                for (UserEntity users : userInfo) {
-                    if (users.getAccount() != null) {
-                        if (Objects.equals(users.getAccount(), item.getAccount())) {
-                            return Result.error("账号已被注册");
-                        }
-                    }
-
-                    if (users.getUser() != null) {
-                        if (Objects.equals(users.getUser(), item.getUser())) {
-                            return Result.error("用户名已被注册");
-                        }
-                    }
-
-                    if (users.getPhone() != null) {
-                        if (Objects.equals(users.getPhone(), item.getPhone())) {
-                            return Result.error("手机号已被注册");
-                        }
-                    }
-
-                    if (users.getEmail() != null) {
-                        if (Objects.equals(users.getEmail(), item.getEmail())) {
-                            return Result.error("邮箱已被注册");
-                        }
-                    }
-                }
-            }
-        }
-
         List<UserEntity> user = UserConvert.INSTANCE.saveList(userList);
 
-        this.saveOrUpdateBatch(user);
+        String res = userMapper.onlyValid(userList.get(0));
 
+        if (res.equals("新增成功")) {
+            this.saveOrUpdateBatch(user);
+        } else {
+            return Result.error(res);
+        }
+
+        StringBuilder ids = new StringBuilder();
+        List<UserRoleEntity> UserRoleList = new ArrayList<>();
         //保存角色
         for (int i = 0; i < userList.size(); i++) {
             UserSaveDTO item = userList.get(i);
-
             //先全部删除用户的角色
             if (item.getId() != null) {
-                userMapper.deleteUserRole(item.getId());
+                ids.append(item.getId()).append(",");
             }
             if (item.getRoles() != null) {
                 //循环角色列表
@@ -166,12 +137,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
                     UserRoleEntity userRole = new UserRoleEntity();
                     userRole.setUserId(user.get(i).getId());
                     userRole.setRoleId(role);
-                    //在批量新增
-                    userMapper.insertUserRole(userRole);
+                    UserRoleList.add(userRole);
                 }
             }
         }
-
+        //删除所有关联的角色
+        userMapper.deleteUserRoleByIds(ids.substring(0, ids.length() - 1));
+        //插入新的角色
+        userMapper.batchInsertUserRole(UserRoleList);
 
         return Result.success(user);
     }
@@ -207,60 +180,74 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         //查询数据
         UserEntity userInfo = userMapper.selectOne(wrapper);
 
-        //返回用户信息
+        //登录成功返回用户信息
         if (userInfo != null) {
-            UserInfoVO userInfoVo = new UserInfoVO();
             //1.注入token
-            String Token = JWT.create().withAudience(String.valueOf(userInfo.getId())).withExpiresAt(new Date()).sign(Algorithm.HMAC256(userInfo.getPassword()));
-            userInfoVo.setToken(Token);
-
-            //2.注入用户信息
-            userInfoVo.setUserInfo(userInfo);
-
-            //3.注入角色列表
-            //3.1获取该用户所有角色
-            List<UserRoleEntity> roleList = userMapper.selectUserRole(userInfo.getId());
-            List<RoleEntity> role = new ArrayList<>();
-            List<MenuEntity> menus = new ArrayList<>();
-            //根据不同登录系统获取不同的菜单
-            String LoginSystem = loginInfo.getLoginSystem();
-
-            roleList.forEach(item -> {
-                //插入角色
-                role.add(roleMapper.selectById(item.getRoleId()));
-
-                List<RoleMenuEntity> roleMenuList = roleMapper.selectRoleMenu(item.getRoleId());
-
-                roleMenuList.forEach(menuItem -> menus.add(menuMapper.selectById(menuItem.getMenuId())));
-            });
-
-            userInfoVo.setRoles(role);
-            //系统菜单
-            List<MenuEntity> systemMenu = new ArrayList<>();
-
-            for (MenuEntity menu : menus) {
-                if (menu.getType().equals("system") && menu.getPath().equals(LoginSystem)) {
-                    getTree(menus, menu.getId(), systemMenu);
-                }
-            }
-
-            //4.注入菜单
-            userInfoVo.setMenuList(systemMenu);
-
-            return Result.success(userInfoVo);
+            String Token = new JwtUtil().getToken(userInfo);
+            new JwtUtil().getTokenInfo(Token);
+            //返回个人信息
+            return userInfo(userInfo, loginInfo.getLoginSystem(), Token);
         } else {
             return Result.fail("登录失败,请检查账号密码是否正确");
         }
+
+
     }
 
+    /**
+     * 通过token或者其他信息获取用户信息
+     *
+     * @param userInfo 用户信息
+     * @return 用户信息
+     */
+    @Override
+    public Result<UserInfoVO> userInfo(UserEntity userInfo, String loginSystem, String token) {
+        UserInfoVO userInfoVo = new UserInfoVO();
 
-    public void getTree(List<MenuEntity> menus, Long pid, List<MenuEntity> systemMenu) {
+        userInfoVo.setToken(token);
+
+        //2.注入用户信息
+        userInfoVo.setUserInfo(userInfo);
+
+        //获取该用户所有角色
+        List<RoleEntity> role = new ArrayList<>();
+        List<UserRoleEntity> userRoleList = userMapper.selectUserRole(userInfo.getId());
+        List<RoleEntity> roleList = roleMapper.selectList(new RoleQueryDTO());
+
+        //获取角色所有菜单
+        List<MenuEntity> menus = new ArrayList<>();
+        List<RoleMenuEntity> roleMenuList = roleMapper.selectRoleMenuList();
+        List<MenuEntity> menuList = menuMapper.selectList(new MenuQueryDTO());
+
+        userRoleList.forEach(items -> {
+            roleList.forEach(item -> {
+                if (items.getRoleId().equals(item.getId())) {
+                    role.add(item);
+                }
+            });
+
+            roleMenuList.forEach(menuItem -> {
+                //找出这个人所有菜单ID
+                if (menuItem.getRoleId().equals(items.getRoleId())) {
+                    menus.add(menuList.stream().filter(c -> c.getId().equals(menuItem.getMenuId())).collect(Collectors.toList()).get(0));
+                }
+            });
+        });
+
+        userInfoVo.setRoles(role);
+        //系统菜单过滤
+        List<MenuEntity> systemMenu = new ArrayList<>();
+
         for (MenuEntity menu : menus) {
-            if (pid.equals(menu.getParentId())) {
-                systemMenu.add(menu);
-                getTree(menus, menu.getId(), systemMenu);
+            if (menu.getType().equals("system") && menu.getPath().equals(loginSystem)) {
+                new GetMenuList().getTree(menus, menu.getId(), systemMenu);
             }
         }
+
+        //4.注入菜单
+        userInfoVo.setMenuList(systemMenu);
+
+        return Result.success(userInfoVo);
     }
 
 
@@ -272,28 +259,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
      */
     @Override
     public Result<Object> signUpService(SignUpDTO signUpInfo) {
-        // 1.创建的时候先查询   有没有注册过
-        QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
 
-        List<UserEntity> UserLength = userMapper.selectList(wrapper);
+        String res = userMapper.onlyValid(UserConvert.INSTANCE.signUpValid(signUpInfo));
 
-        wrapper.eq("user", signUpInfo.getUser()).or().eq("account", signUpInfo.getAccount());
-
-        List<UserEntity> userList = userMapper.selectList(wrapper);
-
-        if (!userList.isEmpty()) {
-            //3.注册失败,用户名或账号已被注册
-            return Result.fail("注册失败,用户名或账号已被注册");
-        } else {
-            Long uid = (long) (UserLength.size() + 1);
-
-            signUpInfo.setUid(uid);
-
-            this.save(UserConvert.INSTANCE.signUp(signUpInfo));
-
+        if (res.equals("新增成功")) {
+            UserEntity user = UserConvert.INSTANCE.signUp(signUpInfo);
+            this.save(user);
+            //注册成功默认添加普通用户角色
+            userMapper.insertUserRole(user.getId(), 1704391937444175873L);
             return Result.success("注册成功");
+        } else {
+            return Result.error(res);
         }
-
-
     }
 }

@@ -45,19 +45,10 @@ public interface VideoMapper extends BaseMapper<VideoEntity> {
 
         //排序方式
         if (!StrUtil.hasBlank(video.getSortWay())) {
-            switch (video.getSortWay()) {
-                case "playNum":
-                    wrapper.orderByDesc("play_num");
-                    break;
-                case "collectionNum":
-                    wrapper.orderByDesc("collection_num");
-                    break;
-                case "starsNum":
-                    wrapper.orderByDesc("stars_num");
-                    break;
-                default:
-                    wrapper.orderByDesc("create_time");
-                    break;
+            if ("playNum".equals(video.getSortWay())) {
+                wrapper.orderByDesc("play_num");
+            } else {
+                wrapper.orderByDesc("create_time");
             }
         } else {
             wrapper.orderByDesc("create_time");
@@ -87,6 +78,15 @@ public interface VideoMapper extends BaseMapper<VideoEntity> {
         QueryWrapper<VideoEntity> wrapper = new QueryWrapper<>();
 
         wrapper.eq("parent_id", id);
+
+        return selectList(wrapper);
+    }
+
+    //短视频查询
+    default List<VideoEntity> selectSortVideo(Long id) {
+        QueryWrapper<VideoEntity> wrapper = new QueryWrapper<>();
+
+        wrapper.eq("id", id);
 
         return selectList(wrapper);
     }

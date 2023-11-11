@@ -52,7 +52,7 @@ public class DictController {
 
     @GetMapping("/subList")
     @ApiOperation(value = "字典子集列表")
-    public Result<List<DictListVO>> subList(@Valid DictQueryDTO dict) {
+    public Result<List<DictListVO>> dictSubList(@Valid DictQueryDTO dict) {
         return dictService.subListService(dict);
     }
 

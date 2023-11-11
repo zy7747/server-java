@@ -14,7 +14,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-03T09:08:41+0800",
+    date = "2023-11-10T19:55:36+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class UserConvertImpl implements UserConvert {
@@ -128,6 +128,24 @@ public class UserConvertImpl implements UserConvert {
         userEntity.setUser( signUpInfo.getUser() );
 
         return userEntity;
+    }
+
+    @Override
+    public UserSaveDTO signUpValid(SignUpDTO signUpInfo) {
+        if ( signUpInfo == null ) {
+            return null;
+        }
+
+        UserSaveDTO userSaveDTO = new UserSaveDTO();
+
+        userSaveDTO.setUid( signUpInfo.getUid() );
+        userSaveDTO.setPhone( signUpInfo.getPhone() );
+        userSaveDTO.setEmail( signUpInfo.getEmail() );
+        userSaveDTO.setAccount( signUpInfo.getAccount() );
+        userSaveDTO.setPassword( signUpInfo.getPassword() );
+        userSaveDTO.setUser( signUpInfo.getUser() );
+
+        return userSaveDTO;
     }
 
     protected UserPageVO userEntityToUserPageVO(UserEntity userEntity) {

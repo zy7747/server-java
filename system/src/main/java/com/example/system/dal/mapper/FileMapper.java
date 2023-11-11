@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.framework.common.PageList;
 import com.example.system.dal.dto.file.FileQueryDTO;
 import com.example.system.dal.entity.FileEntity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -73,4 +74,7 @@ public interface FileMapper extends BaseMapper<FileEntity> {
     default List<FileEntity> selectList(FileQueryDTO file) {
         return selectList(search(file));
     }
+
+    @Delete("DELETE FROM file WHERE is_deleted = 1")
+    void clearFile();
 }

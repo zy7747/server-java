@@ -60,7 +60,12 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> impl
 
         VideoDetailVO videoInfo = VideoConvert.INSTANCE.detail(videoMapper.selectById(id));
 
-        videoInfo.setVideoList(videoMapper.selectVideoList(id));
+        if ("shorts".equals(videoInfo.getType())) {
+            videoInfo.setVideoList(videoMapper.selectSortVideo(id));
+        } else {
+            videoInfo.setVideoList(videoMapper.selectVideoList(id));
+        }
+
 
         return Result.success(videoInfo);
     }
@@ -131,7 +136,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> impl
                 anime.add(i);
             } else if (i.getType().equals("movie") && movie.size() < 10) {
                 movie.add(i);
-            } else if (i.getType().equals("Variety") && Variety.size() < 10) {
+            } else if (i.getType().equals("variety") && Variety.size() < 10) {
                 Variety.add(i);
             } else if (i.getType().equals("tv") && tv.size() < 10) {
                 tv.add(i);

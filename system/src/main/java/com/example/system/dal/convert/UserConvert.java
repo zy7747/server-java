@@ -28,4 +28,6 @@ public interface UserConvert {
     List<UserExportVO> export(List<UserEntity> users);
 
     UserEntity signUp(SignUpDTO signUpInfo);
+
+    UserSaveDTO signUpValid(SignUpDTO signUpInfo);
 }

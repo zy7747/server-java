@@ -1,6 +1,5 @@
 package com.example.system.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
 import com.example.framework.utils.Excel;
@@ -56,6 +55,12 @@ public class UserController {
         return userService.detailService(id);
     }
 
+    @GetMapping("/userInfo")
+    @ApiOperation(value = "获取用户信息")
+    public Result<UserInfoVO> userInfo(UserEntity user, String loginSystem, String token) {
+        return userService.userInfo(user, loginSystem, token);
+    }
+
     @PostMapping("/saveList")
     @ApiOperation(value = "批量新增/修改")
     public Result<List<UserEntity>> userSaveList(@RequestBody @Valid List<UserSaveDTO> users) {
@@ -74,8 +79,8 @@ public class UserController {
 
     @GetMapping("/export")
     @ApiOperation(value = "导出")
-    public void roleExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "用户.xlsx", "用户", UserExportVO.class, UserConvert.INSTANCE.export(userMapper.selectList(new QueryWrapper<>())));
+    public void roleExport(HttpServletResponse response, UserQueryDTO user) throws IOException {
+        Excel.export(response, "用户.xlsx", "用户", UserExportVO.class, UserConvert.INSTANCE.export(userMapper.selectList(user)));
     }
 
     @GetMapping("/login")

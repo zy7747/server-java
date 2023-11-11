@@ -23,6 +23,7 @@ public class MyJob implements Job {
             clearDataJo.clearMenu();
             clearDataJo.clearUser();
             clearDataJo.clearDict();
+            clearDataJo.clearFile();
             new PrintJob().printTest("定时清理任务执行时间：");
         }
     }

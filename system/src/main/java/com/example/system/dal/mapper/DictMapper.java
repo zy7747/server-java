@@ -11,6 +11,7 @@ import com.example.system.dal.entity.DictEntity;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,26 +97,30 @@ public interface DictMapper extends BaseMapper<DictEntity> {
 
     //  查询所有字典列表返回前端
     default Object selectAllDictList() {
-        QueryWrapper<DictEntity> wrapperId = new QueryWrapper<>();
+        QueryWrapper<DictEntity> wrapper = new QueryWrapper<>();
+
+        wrapper.orderByAsc("sort");
+
         //新建一个要返回的集合
         Map<String, Object> allDictList = new HashMap<>();
 
-        wrapperId.isNull("parent_id");
         //1.拿出所有集合
-        List<DictEntity> dictList = selectList(wrapperId);
+        List<DictEntity> dictList = selectList(wrapper);
+
         //便利所有集合
         dictList.forEach(item -> {
-            QueryWrapper<DictEntity> wrapper = new QueryWrapper<>();
-            //寻找子集
-            wrapper.eq("parent_id", item.getId());
 
-            wrapper.orderByAsc("sort");
+            if (item.getParentId() == null) {
+                List<DictEntity> subset = new ArrayList<>();
 
-            List<DictEntity> subset = selectList(wrapper);
+                dictList.forEach(dictItem -> {
+                    if (item.getId().equals(dictItem.getParentId())) {
+                        subset.add(dictItem);
+                    }
+                });
 
-            subset.forEach(map -> map.setDictType(item.getDictType()));
-
-            allDictList.put(item.getDictCode(), subset);
+                allDictList.put(item.getDictCode(), subset);
+            }
         });
 
         return allDictList;

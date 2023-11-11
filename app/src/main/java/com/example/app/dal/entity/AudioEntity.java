@@ -86,16 +86,8 @@ public class AudioEntity extends BaseParamsEntity {
      */
     @ApiModelProperty(value = "时长")
     private Integer duration;
-    /**
-     * 点赞量
-     */
-    @ApiModelProperty(value = "点赞量")
-    private Integer starsNum;
-    /**
-     * 收藏量
-     */
-    @ApiModelProperty(value = "收藏量")
-    private Integer collectionNum;
+   
+    
     /**
      * 播放量
      */
