@@ -115,6 +115,7 @@ public interface DictMapper extends BaseMapper<DictEntity> {
 
                 dictList.forEach(dictItem -> {
                     if (item.getId().equals(dictItem.getParentId())) {
+                        dictItem.setDictType(item.getDictType());
                         subset.add(dictItem);
                     }
                 });

@@ -58,4 +58,16 @@ public class Result<T> {
         return results;
     }
 
+    /**
+     * 没有权限
+     *
+     * @return 封装的返回结果
+     */
+    public static <T> Result<T> noPermissions() {
+        Result<T> results = new Result<>();
+        results.setCode(401);
+        results.setMessage("用户没有权限（令牌、用户名、密码错误）");
+        return results;
+    }
+
 }

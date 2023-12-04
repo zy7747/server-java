@@ -6,10 +6,8 @@ import com.example.framework.common.Result;
 import com.example.system.dal.convert.RoleConvert;
 import com.example.system.dal.dto.role.RoleQueryDTO;
 import com.example.system.dal.dto.role.RoleSaveDTO;
-import com.example.system.dal.entity.MenuEntity;
 import com.example.system.dal.entity.RoleEntity;
 import com.example.system.dal.entity.RoleMenuEntity;
-import com.example.system.dal.mapper.MenuMapper;
 import com.example.system.dal.mapper.RoleMapper;
 import com.example.system.dal.vo.role.RoleDetailVO;
 import com.example.system.dal.vo.role.RoleListVO;
@@ -26,9 +24,6 @@ import java.util.List;
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> implements RoleService {
     @Resource
     RoleMapper roleMapper;
-
-    @Resource
-    MenuMapper menuMapper;
 
     /**
      * 获取列表分页
@@ -60,16 +55,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
      */
     @Override
     public Result<RoleDetailVO> detailService(Long id) {
-        //从关联表中获取角色
+        //1.从关联表中获取角色的菜单
         ArrayList<Long> menuList = new ArrayList<>();
+        roleMapper.selectRoleMenu(id).forEach(item -> menuList.add(item.getMenuId()));
 
-        roleMapper.selectRoleMenu(id).forEach(item -> {
-            MenuEntity menuRow = menuMapper.selectById(item.getMenuId());
-            menuList.add(menuRow.getId());
-        });
-
+        //2.查出数据
         RoleDetailVO roleDetail = RoleConvert.INSTANCE.detail(roleMapper.selectById(id));
 
+        //3.塞入数据
         roleDetail.setMenuList(menuList);
 
         return Result.success(roleDetail);
@@ -88,7 +81,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
 
         roleList.forEach(item -> {
             //先全部删除
-            roleMapper.deleteRoleMenu(item.getId());
+            roleMapper.deleteRoleMenu(role.get(0).getId());
             for (Long menu : item.getMenuList()) {
                 //将角色数据塞进去
                 RoleMenuEntity roleMenu = new RoleMenuEntity();

@@ -14,12 +14,6 @@ public class StatisticsGetVO {
     private Integer userTotal;
 
     /**
-     * 用户性别统计
-     */
-    @ApiModelProperty(value = "用户性别统计")
-    private Object userSex;
-
-    /**
      * 视频总数
      */
     @ApiModelProperty(value = "视频总数")

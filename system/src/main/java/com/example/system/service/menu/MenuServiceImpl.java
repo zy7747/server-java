@@ -11,7 +11,6 @@ import com.example.system.dal.mapper.MenuMapper;
 import com.example.system.dal.vo.menu.MenuDetailVO;
 import com.example.system.dal.vo.menu.MenuListVO;
 import com.example.system.dal.vo.menu.MenuPageVO;
-import com.example.system.utils.GetMenuList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

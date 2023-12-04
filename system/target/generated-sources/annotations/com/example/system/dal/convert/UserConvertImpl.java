@@ -4,6 +4,7 @@ import com.example.framework.common.PageList;
 import com.example.system.dal.dto.user.SignUpDTO;
 import com.example.system.dal.dto.user.UserSaveDTO;
 import com.example.system.dal.entity.UserEntity;
+import com.example.system.dal.vo.user.UserBaseInfoVO;
 import com.example.system.dal.vo.user.UserDetailVO;
 import com.example.system.dal.vo.user.UserExportVO;
 import com.example.system.dal.vo.user.UserListVO;
@@ -14,7 +15,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-10T19:55:36+0800",
+    date = "2023-12-03T21:22:04+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class UserConvertImpl implements UserConvert {
@@ -73,15 +74,30 @@ public class UserConvertImpl implements UserConvert {
         userDetailVO.setAccount( users.getAccount() );
         userDetailVO.setPassword( users.getPassword() );
         userDetailVO.setUser( users.getUser() );
-        userDetailVO.setName( users.getName() );
-        userDetailVO.setIdCard( users.getIdCard() );
         userDetailVO.setAvatar( users.getAvatar() );
-        userDetailVO.setSex( users.getSex() );
         userDetailVO.setUserType( users.getUserType() );
-        userDetailVO.setAge( users.getAge() );
-        userDetailVO.setBirthDate( users.getBirthDate() );
 
         return userDetailVO;
+    }
+
+    @Override
+    public UserBaseInfoVO UserBaseInfoVO(UserEntity users) {
+        if ( users == null ) {
+            return null;
+        }
+
+        UserBaseInfoVO userBaseInfoVO = new UserBaseInfoVO();
+
+        userBaseInfoVO.setId( users.getId() );
+        userBaseInfoVO.setUid( users.getUid() );
+        userBaseInfoVO.setPhone( users.getPhone() );
+        userBaseInfoVO.setEmail( users.getEmail() );
+        userBaseInfoVO.setAccount( users.getAccount() );
+        userBaseInfoVO.setUser( users.getUser() );
+        userBaseInfoVO.setAvatar( users.getAvatar() );
+        userBaseInfoVO.setUserType( users.getUserType() );
+
+        return userBaseInfoVO;
     }
 
     @Override
@@ -171,13 +187,8 @@ public class UserConvertImpl implements UserConvert {
         userPageVO.setAccount( userEntity.getAccount() );
         userPageVO.setPassword( userEntity.getPassword() );
         userPageVO.setUser( userEntity.getUser() );
-        userPageVO.setName( userEntity.getName() );
-        userPageVO.setIdCard( userEntity.getIdCard() );
         userPageVO.setAvatar( userEntity.getAvatar() );
-        userPageVO.setSex( userEntity.getSex() );
         userPageVO.setUserType( userEntity.getUserType() );
-        userPageVO.setAge( userEntity.getAge() );
-        userPageVO.setBirthDate( userEntity.getBirthDate() );
 
         return userPageVO;
     }
@@ -218,13 +229,8 @@ public class UserConvertImpl implements UserConvert {
         userListVO.setAccount( userEntity.getAccount() );
         userListVO.setPassword( userEntity.getPassword() );
         userListVO.setUser( userEntity.getUser() );
-        userListVO.setName( userEntity.getName() );
-        userListVO.setIdCard( userEntity.getIdCard() );
         userListVO.setAvatar( userEntity.getAvatar() );
-        userListVO.setSex( userEntity.getSex() );
         userListVO.setUserType( userEntity.getUserType() );
-        userListVO.setAge( userEntity.getAge() );
-        userListVO.setBirthDate( userEntity.getBirthDate() );
 
         return userListVO;
     }
@@ -252,13 +258,8 @@ public class UserConvertImpl implements UserConvert {
         userEntity.setAccount( userSaveDTO.getAccount() );
         userEntity.setPassword( userSaveDTO.getPassword() );
         userEntity.setUser( userSaveDTO.getUser() );
-        userEntity.setName( userSaveDTO.getName() );
-        userEntity.setIdCard( userSaveDTO.getIdCard() );
         userEntity.setAvatar( userSaveDTO.getAvatar() );
-        userEntity.setSex( userSaveDTO.getSex() );
         userEntity.setUserType( userSaveDTO.getUserType() );
-        userEntity.setAge( userSaveDTO.getAge() );
-        userEntity.setBirthDate( userSaveDTO.getBirthDate() );
 
         return userEntity;
     }
@@ -284,13 +285,8 @@ public class UserConvertImpl implements UserConvert {
         userExportVO.setAccount( userEntity.getAccount() );
         userExportVO.setPassword( userEntity.getPassword() );
         userExportVO.setUser( userEntity.getUser() );
-        userExportVO.setName( userEntity.getName() );
-        userExportVO.setIdCard( userEntity.getIdCard() );
         userExportVO.setAvatar( userEntity.getAvatar() );
-        userExportVO.setSex( userEntity.getSex() );
         userExportVO.setUserType( userEntity.getUserType() );
-        userExportVO.setAge( userEntity.getAge() );
-        userExportVO.setBirthDate( userEntity.getBirthDate() );
 
         return userExportVO;
     }

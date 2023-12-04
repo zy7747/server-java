@@ -14,7 +14,7 @@ public class SignUpDTO {
     private String account;
 
     @ApiModelProperty(value = "用户id")
-    private Long uid;
+    private String uid;
 
     @ApiModelProperty(value = "电话号码")
     private String phone;

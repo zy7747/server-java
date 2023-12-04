@@ -69,5 +69,5 @@ public interface UserService {
      * @param user 用户信息
      * @return 用户信息
      */
-    Result<UserInfoVO> userInfo(UserEntity user, String loginSystem, String token);
+    Result<UserInfoVO> userInfo( String loginSystem, String token);
 }

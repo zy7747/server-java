@@ -26,9 +26,9 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@CrossOrigin
 @Validated
 @Api(tags = "用户接口")
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
     @Resource
@@ -53,12 +53,6 @@ public class UserController {
     @ApiOperation(value = "详情")
     public Result<UserDetailVO> userDetail(Long id) {
         return userService.detailService(id);
-    }
-
-    @GetMapping("/userInfo")
-    @ApiOperation(value = "获取用户信息")
-    public Result<UserInfoVO> userInfo(UserEntity user, String loginSystem, String token) {
-        return userService.userInfo(user, loginSystem, token);
     }
 
     @PostMapping("/saveList")
@@ -93,5 +87,11 @@ public class UserController {
     @ApiOperation(value = "注册")
     public Result<Object> signUp(@Valid @RequestBody SignUpDTO signUpInfo) {
         return userService.signUpService(signUpInfo);
+    }
+
+    @GetMapping("/userInfo")
+    @ApiOperation(value = "获取用户信息")
+    public Result<UserInfoVO> userInfo(@RequestHeader("Authorization") String token, String loginSystem) {
+        return userService.userInfo(loginSystem, token);
     }
 }

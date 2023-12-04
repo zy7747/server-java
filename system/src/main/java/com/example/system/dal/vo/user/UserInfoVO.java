@@ -2,7 +2,6 @@ package com.example.system.dal.vo.user;
 
 import com.example.system.dal.entity.MenuEntity;
 import com.example.system.dal.entity.RoleEntity;
-import com.example.system.dal.entity.UserEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,7 +17,7 @@ public class UserInfoVO {
     private String token;
 
     @ApiModelProperty(value = "用户信息")
-    private UserEntity userInfo;
+    private UserBaseInfoVO userInfo;
 
     @ApiModelProperty(value = "角色列表")
     private List<RoleEntity> roles;

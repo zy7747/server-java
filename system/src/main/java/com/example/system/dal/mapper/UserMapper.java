@@ -44,18 +44,6 @@ public interface UserMapper extends BaseMapper<UserEntity> {
         if (!StrUtil.hasBlank(user.getUser())) {
             wrapper.eq("user", user.getUser());
         }
-        /* 真实姓名 */
-        if (!StrUtil.hasBlank(user.getName())) {
-            wrapper.eq("name", user.getName());
-        }
-        /* 身份证号码 */
-        if (!StrUtil.hasBlank(user.getIdCard())) {
-            wrapper.eq("id_card", user.getIdCard());
-        }
-        /* 性别 */
-        if (!StrUtil.hasBlank(user.getSex())) {
-            wrapper.eq("sex", user.getSex());
-        }
         /* 用户类型 */
         if (!StrUtil.hasBlank(user.getUserType())) {
             wrapper.eq("user_type", user.getUserType());

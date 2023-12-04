@@ -186,7 +186,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             String Token = new JwtUtil().getToken(userInfo);
             new JwtUtil().getTokenInfo(Token);
             //返回个人信息
-            return userInfo(userInfo, loginInfo.getLoginSystem(), Token);
+            return userInfo(loginInfo.getLoginSystem(), Token);
         } else {
             return Result.fail("登录失败,请检查账号密码是否正确");
         }
@@ -197,17 +197,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     /**
      * 通过token或者其他信息获取用户信息
      *
-     * @param userInfo 用户信息
      * @return 用户信息
      */
     @Override
-    public Result<UserInfoVO> userInfo(UserEntity userInfo, String loginSystem, String token) {
+    public Result<UserInfoVO> userInfo(String loginSystem, String token) {
+        Object userId = new JwtUtil().getTokenInfo(token);
+
+        UserEntity userInfo = userMapper.selectById(userId.toString());
+
         UserInfoVO userInfoVo = new UserInfoVO();
 
         userInfoVo.setToken(token);
 
         //2.注入用户信息
-        userInfoVo.setUserInfo(userInfo);
+        userInfoVo.setUserInfo(UserConvert.INSTANCE.UserBaseInfoVO(userInfo));
 
         //获取该用户所有角色
         List<RoleEntity> role = new ArrayList<>();
@@ -234,13 +237,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             });
         });
 
+        // 菜单去重
+        List<MenuEntity> menusList = menus.stream()
+                .distinct()
+                .sorted(Comparator.comparing(MenuEntity::getId))
+                .collect(Collectors.toList());
+
         userInfoVo.setRoles(role);
         //系统菜单过滤
         List<MenuEntity> systemMenu = new ArrayList<>();
 
-        for (MenuEntity menu : menus) {
+        for (MenuEntity menu : menusList) {
             if (menu.getType().equals("system") && menu.getPath().equals(loginSystem)) {
-                new GetMenuList().getTree(menus, menu.getId(), systemMenu);
+                new GetMenuList().getTree(menusList, menu.getId(), systemMenu);
             }
         }
 
@@ -264,6 +273,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
         if (res.equals("新增成功")) {
             UserEntity user = UserConvert.INSTANCE.signUp(signUpInfo);
+
             this.save(user);
             //注册成功默认添加普通用户角色
             userMapper.insertUserRole(user.getId(), 1704391937444175873L);
