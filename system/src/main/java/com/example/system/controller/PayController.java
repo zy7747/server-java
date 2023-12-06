@@ -19,6 +19,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -67,6 +68,13 @@ public class PayController {
     public Result<Object> payDelete(@RequestBody List<PayEntity> ids) {
         ids.forEach(item -> payMapper.deleteById(item.getId()));
         return Result.success("删除成功");
+    }
+
+    @PostMapping("/import")
+    @ApiOperation(value = "导入")
+    public Result<List<PayEntity>> payImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
+        List<PaySaveDTO> payList = PayConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), PayExportVO.class));
+        return payService.paySaveListService(payList);
     }
 
     @GetMapping("/export")

@@ -25,4 +25,6 @@ public interface PayConvert {
     List<PayEntity> saveList(List<PaySaveDTO> pays);
 
     List<PayExportVO> export(List<PayEntity> pays);
+
+    List<PaySaveDTO> imports(List<PayExportVO> pays);
 }
