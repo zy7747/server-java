@@ -1,18 +1,14 @@
 package com.example.system.dal.vo.job;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.example.framework.dal.vo.ExcelParamsVO;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
 @Data
 @ApiModel(value = "导出")
-@EqualsAndHashCode(callSuper = true)
-public class JobExportVO extends ExcelParamsVO {
+public class JobExportVO {
     @ExcelProperty("任务名称")
     private String jobName;
     /**

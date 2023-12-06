@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -69,6 +70,15 @@ public class PersonController {
     public Result<Object> personDelete(@RequestBody List<PersonEntity> ids) {
         ids.forEach(item -> personMapper.deleteById(item.getId()));
         return Result.success("删除成功");
+    }
+
+    @PostMapping("/import")
+    @ApiOperation(value = "导入")
+    public Result<List<PersonEntity>> noticeImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
+
+        List<PersonSaveDTO> personList = PersonConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), PersonExportVO.class));
+
+        return personService.personSaveListService(personList);
     }
 
     @GetMapping("/export")

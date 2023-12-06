@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:08+0800",
+    date = "2023-12-06T08:03:31+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class AudioConvertImpl implements AudioConvert {
@@ -245,14 +245,6 @@ public class AudioConvertImpl implements AudioConvert {
 
         AudioExportVO audioExportVO = new AudioExportVO();
 
-        audioExportVO.setId( audioEntity.getId() );
-        audioExportVO.setStatus( audioEntity.getStatus() );
-        audioExportVO.setRemark( audioEntity.getRemark() );
-        audioExportVO.setCreator( audioEntity.getCreator() );
-        audioExportVO.setUpdater( audioEntity.getUpdater() );
-        audioExportVO.setCreateTime( audioEntity.getCreateTime() );
-        audioExportVO.setUpdateTime( audioEntity.getUpdateTime() );
-        audioExportVO.setIsDeleted( audioEntity.getIsDeleted() );
         audioExportVO.setAudioName( audioEntity.getAudioName() );
         audioExportVO.setTitle( audioEntity.getTitle() );
         audioExportVO.setType( audioEntity.getType() );

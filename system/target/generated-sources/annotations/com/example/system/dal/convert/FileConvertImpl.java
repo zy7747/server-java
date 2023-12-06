@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:04+0800",
+    date = "2023-12-06T08:03:26+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class FileConvertImpl implements FileConvert {
@@ -205,14 +205,6 @@ public class FileConvertImpl implements FileConvert {
 
         FileExportVO fileExportVO = new FileExportVO();
 
-        fileExportVO.setId( fileEntity.getId() );
-        fileExportVO.setStatus( fileEntity.getStatus() );
-        fileExportVO.setRemark( fileEntity.getRemark() );
-        fileExportVO.setCreator( fileEntity.getCreator() );
-        fileExportVO.setUpdater( fileEntity.getUpdater() );
-        fileExportVO.setCreateTime( fileEntity.getCreateTime() );
-        fileExportVO.setUpdateTime( fileEntity.getUpdateTime() );
-        fileExportVO.setIsDeleted( fileEntity.getIsDeleted() );
         fileExportVO.setFileName( fileEntity.getFileName() );
         fileExportVO.setUrl( fileEntity.getUrl() );
         fileExportVO.setFileType( fileEntity.getFileType() );

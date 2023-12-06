@@ -1,16 +1,13 @@
 package com.example.system.dal.vo.area;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.example.framework.dal.vo.ExcelParamsVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 @ApiModel(value = "导出")
-@EqualsAndHashCode(callSuper = true)
-public class AreaExportVO extends ExcelParamsVO {
+public class AreaExportVO {
     /**
      * 父节点id
      */

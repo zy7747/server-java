@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:04+0800",
+    date = "2023-12-06T08:03:26+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class MenuConvertImpl implements MenuConvert {
@@ -241,13 +241,6 @@ public class MenuConvertImpl implements MenuConvert {
 
         MenuExportVO menuExportVO = new MenuExportVO();
 
-        menuExportVO.setStatus( menuEntity.getStatus() );
-        menuExportVO.setRemark( menuEntity.getRemark() );
-        menuExportVO.setCreator( menuEntity.getCreator() );
-        menuExportVO.setUpdater( menuEntity.getUpdater() );
-        menuExportVO.setCreateTime( menuEntity.getCreateTime() );
-        menuExportVO.setUpdateTime( menuEntity.getUpdateTime() );
-        menuExportVO.setIsDeleted( menuEntity.getIsDeleted() );
         menuExportVO.setId( menuEntity.getId() );
         menuExportVO.setParentId( menuEntity.getParentId() );
         menuExportVO.setTitle( menuEntity.getTitle() );

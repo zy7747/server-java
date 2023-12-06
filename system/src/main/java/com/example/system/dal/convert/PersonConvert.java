@@ -27,4 +27,6 @@ public interface PersonConvert {
     List<PersonEntity> saveList(List<PersonSaveDTO> persons);
 
     List<PersonExportVO> export(List<PersonEntity> persons);
+
+    List<PersonSaveDTO> imports(List<PersonExportVO> persons);
 }

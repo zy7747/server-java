@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:04+0800",
+    date = "2023-12-06T08:03:26+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class JobConvertImpl implements JobConvert {
@@ -201,14 +201,6 @@ public class JobConvertImpl implements JobConvert {
 
         JobExportVO jobExportVO = new JobExportVO();
 
-        jobExportVO.setId( jobEntity.getId() );
-        jobExportVO.setStatus( jobEntity.getStatus() );
-        jobExportVO.setRemark( jobEntity.getRemark() );
-        jobExportVO.setCreator( jobEntity.getCreator() );
-        jobExportVO.setUpdater( jobEntity.getUpdater() );
-        jobExportVO.setCreateTime( jobEntity.getCreateTime() );
-        jobExportVO.setUpdateTime( jobEntity.getUpdateTime() );
-        jobExportVO.setIsDeleted( jobEntity.getIsDeleted() );
         jobExportVO.setJobName( jobEntity.getJobName() );
         jobExportVO.setJobCode( jobEntity.getJobCode() );
         jobExportVO.setStartTime( jobEntity.getStartTime() );

@@ -1,15 +1,12 @@
 package com.example.system.dal.vo.menu;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.example.framework.dal.vo.ExcelParamsVO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 @ApiModel(value = "导出")
-@EqualsAndHashCode(callSuper = true)
-public class MenuExportVO extends ExcelParamsVO {
+public class MenuExportVO {
     /**
      * id
      */

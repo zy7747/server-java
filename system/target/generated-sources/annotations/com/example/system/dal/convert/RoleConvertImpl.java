@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:04+0800",
+    date = "2023-12-06T08:03:26+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class RoleConvertImpl implements RoleConvert {
@@ -189,14 +189,6 @@ public class RoleConvertImpl implements RoleConvert {
 
         RoleExportVO roleExportVO = new RoleExportVO();
 
-        roleExportVO.setId( roleEntity.getId() );
-        roleExportVO.setStatus( roleEntity.getStatus() );
-        roleExportVO.setRemark( roleEntity.getRemark() );
-        roleExportVO.setCreator( roleEntity.getCreator() );
-        roleExportVO.setUpdater( roleEntity.getUpdater() );
-        roleExportVO.setCreateTime( roleEntity.getCreateTime() );
-        roleExportVO.setUpdateTime( roleEntity.getUpdateTime() );
-        roleExportVO.setIsDeleted( roleEntity.getIsDeleted() );
         roleExportVO.setRoleName( roleEntity.getRoleName() );
 
         return roleExportVO;

@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:04+0800",
+    date = "2023-12-06T08:03:26+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class DictConvertImpl implements DictConvert {
@@ -235,14 +235,6 @@ public class DictConvertImpl implements DictConvert {
 
         DictExportVO dictExportVO = new DictExportVO();
 
-        dictExportVO.setId( dictEntity.getId() );
-        dictExportVO.setStatus( dictEntity.getStatus() );
-        dictExportVO.setRemark( dictEntity.getRemark() );
-        dictExportVO.setCreator( dictEntity.getCreator() );
-        dictExportVO.setUpdater( dictEntity.getUpdater() );
-        dictExportVO.setCreateTime( dictEntity.getCreateTime() );
-        dictExportVO.setUpdateTime( dictEntity.getUpdateTime() );
-        dictExportVO.setIsDeleted( dictEntity.getIsDeleted() );
         dictExportVO.setParentId( dictEntity.getParentId() );
         dictExportVO.setDictName( dictEntity.getDictName() );
         dictExportVO.setDictCode( dictEntity.getDictCode() );

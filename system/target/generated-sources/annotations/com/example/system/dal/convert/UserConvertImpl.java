@@ -15,7 +15,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:04+0800",
+    date = "2023-12-06T08:03:26+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class UserConvertImpl implements UserConvert {
@@ -271,14 +271,6 @@ public class UserConvertImpl implements UserConvert {
 
         UserExportVO userExportVO = new UserExportVO();
 
-        userExportVO.setId( userEntity.getId() );
-        userExportVO.setStatus( userEntity.getStatus() );
-        userExportVO.setRemark( userEntity.getRemark() );
-        userExportVO.setCreator( userEntity.getCreator() );
-        userExportVO.setUpdater( userEntity.getUpdater() );
-        userExportVO.setCreateTime( userEntity.getCreateTime() );
-        userExportVO.setUpdateTime( userEntity.getUpdateTime() );
-        userExportVO.setIsDeleted( userEntity.getIsDeleted() );
         userExportVO.setUid( userEntity.getUid() );
         userExportVO.setPhone( userEntity.getPhone() );
         userExportVO.setEmail( userEntity.getEmail() );

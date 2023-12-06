@@ -1,17 +1,14 @@
 package com.example.system.dal.vo.person;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.example.framework.dal.vo.ExcelParamsVO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
 @Data
 @ApiModel(value = "导出")
-@EqualsAndHashCode(callSuper = true)
-public class PersonExportVO extends ExcelParamsVO {
+public class PersonExportVO {
 
     /**
      * 用户id

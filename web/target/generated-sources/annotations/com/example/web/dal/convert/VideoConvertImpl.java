@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T21:22:00+0800",
+    date = "2023-12-06T08:03:22+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class VideoConvertImpl implements VideoConvert {
@@ -245,14 +245,6 @@ public class VideoConvertImpl implements VideoConvert {
 
         VideoExportVO videoExportVO = new VideoExportVO();
 
-        videoExportVO.setId( videoEntity.getId() );
-        videoExportVO.setStatus( videoEntity.getStatus() );
-        videoExportVO.setRemark( videoEntity.getRemark() );
-        videoExportVO.setCreator( videoEntity.getCreator() );
-        videoExportVO.setUpdater( videoEntity.getUpdater() );
-        videoExportVO.setCreateTime( videoEntity.getCreateTime() );
-        videoExportVO.setUpdateTime( videoEntity.getUpdateTime() );
-        videoExportVO.setIsDeleted( videoEntity.getIsDeleted() );
         videoExportVO.setVideoName( videoEntity.getVideoName() );
         videoExportVO.setTitle( videoEntity.getTitle() );
         videoExportVO.setType( videoEntity.getType() );
