@@ -1,7 +1,7 @@
 package com.example.system.job;
 
 import com.example.system.dal.mapper.*;
-import com.example.system.utils.SpringUtils;
+import com.example.framework.utils.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

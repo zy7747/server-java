@@ -5,222 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7edfa83-bc5c-414c-b00a-a71b76185f2c" name="默认变更列表" comment="'新增功能模块'">
+      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/service/WebSocketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/controller/AudioController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/convert/AudioConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/convert/AudioConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/dto/audio/AudioQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/dto/audio/AudioSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/entity/AudioEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/mapper/AudioMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/vo/audio/AudioDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/vo/audio/AudioExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/vo/audio/AudioListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/dal/vo/audio/AudioPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/service/AudioService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/com/example/app/service/AudioServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/classes/mapper/AudioMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/target/generated-sources/annotations/com/example/app/dal/convert/AudioConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/booting/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/booting/target/classes/com/example/booting/BootingApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/common/GlobalExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/common/MyMetaObjectHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/common/PageList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/common/Result.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/config/MybatisPlusConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/config/SwaggerConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/config/WebConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/config/WebSocketConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/dal/dto/BaseParamsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/dal/dto/PageParamsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/dal/dto/SendMessageDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/dal/entity/BaseParamsEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/dal/vo/BaseParamsVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/dal/vo/ExcelParamsVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/service/WebsocketImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/utils/Excel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/target/classes/com/example/framework/utils/GetHeaderInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/controller/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/controller/PayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/convert/PayConvert.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/convert/PayConvert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/annotation/Dict.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/annotation/DictAspect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/AreaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/DictController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/FileController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/JobController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/MenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/NoticeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/PayController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/PersonController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/RoleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/StatisticsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/AreaConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/AreaConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/DictConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/DictConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/FileConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/FileConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/JobConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/JobConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/MenuConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/MenuConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/NoticeConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/NoticeConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/PayConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/PayConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/PersonConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/PersonConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/RoleConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/RoleConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/UserConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/convert/UserConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/area/AreaQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/area/AreaSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/dict/DictQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/dict/DictSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/file/FileQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/file/FileSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/file/FileUploadDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/job/JobQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/job/JobSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/menu/MenuQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/menu/MenuSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/notice/NoticeQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/notice/NoticeSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/pay/PayQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/pay/PaySaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/person/PersonQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/person/PersonSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/role/RoleQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/role/RoleSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/statistics/StatisticsQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/user/ChangePasswordDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/user/LoginDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/user/SignUpDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/user/UserQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/dto/user/UserSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/AreaEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/DictEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/FileEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/JobEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/MenuEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/NoticeEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/PayEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/PersonEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/RoleEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/RoleMenuEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/UserEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/entity/UserRoleEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/AreaMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/DictMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/FileMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/JobMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/MenuMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/NoticeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/PayMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/PersonMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/RoleMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/area/AreaDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/area/AreaExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/area/AreaListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/area/AreaPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/dict/DictDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/dict/DictExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/dict/DictListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/dict/DictPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/file/FileDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/file/FileExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/file/FileListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/file/FilePageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/job/JobDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/job/JobExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/job/JobListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/job/JobPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/menu/MenuDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/menu/MenuExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/menu/MenuListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/menu/MenuPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/notice/NoticeDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/notice/NoticeExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/notice/NoticeListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/notice/NoticePageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/pay/PayDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/pay/PayExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/pay/PayListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/pay/PayPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/person/PersonDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/person/PersonExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/person/PersonListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/person/PersonPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/role/RoleDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/role/RoleExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/role/RoleListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/role/RolePageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/statistics/StatisticsGetVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/user/UserBaseInfoVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/user/UserDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/user/UserExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/user/UserInfoVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/user/UserListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/dal/vo/user/UserPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/job/ClearDataJob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/job/PrintJob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/area/AreaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/area/AreaServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/dict/DictService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/dict/DictServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/file/FileService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/file/FileServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/job/JobService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/job/JobServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/menu/MenuService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/menu/MenuServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/notice/NoticeService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/notice/NoticeServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/pay/PayService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/pay/PayServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/person/PersonService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/person/PersonServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/role/RoleService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/role/RoleServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/statistics/StatisticsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/statistics/StatisticsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/user/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/service/user/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/utils/GetMenuList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/utils/JwtUtil$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/utils/JwtUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/utils/MyJob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/utils/SpringUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/com/example/system/utils/Task.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/classes/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/AreaConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/DictConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/FileConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/JobConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/MenuConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/NoticeConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/PayConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/PersonConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/RoleConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/target/generated-sources/annotations/com/example/system/dal/convert/UserConvertImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/controller/VideoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/convert/VideoConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/convert/VideoConvertImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/dto/video/HotVideoListQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/dto/video/VideoQueryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/dto/video/VideoSaveDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/entity/VideoEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/mapper/VideoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/vo/video/VideoDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/vo/video/VideoExportVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/vo/video/VideoListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/dal/vo/video/VideoPageVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/service/video/VideoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/classes/com/example/web/service/video/VideoServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/target/generated-sources/annotations/com/example/web/dal/convert/VideoConvertImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/booting/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/booting/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/config/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/config/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/dal/dto/SendMessageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/dal/dto/SendMessageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/service/WebsocketImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/service/WebSocketServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/utils/GetHeaderInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/utils/GetHeaderInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/controller/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/dto/notice/NoticeQueryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/dto/notice/NoticeQueryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/dto/notice/NoticeSaveDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/dto/notice/NoticeSaveDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/entity/NoticeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/entity/NoticeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/mapper/NoticeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/mapper/NoticeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/area.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/area.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/dict.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/dict.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/file.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/file.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/job.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/job.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/layout.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/layout.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/log.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/log.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/menu.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/menu.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/notice.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/notice.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/pay.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/pay.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/person.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/person.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/role.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/role.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/sql/user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticeDetailVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticeDetailVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticeExportVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticeExportVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticeListVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticeListVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticePageVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/dal/vo/notice/NoticePageVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/job/ClearDataJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/job/ClearDataJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/service/notice/NoticeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/service/notice/NoticeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/system/src/main/java/com/example/system/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/utils/GetMenuList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/src/main/java/com/example/system/utils/SpringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework/src/main/java/com/example/framework/utils/SpringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/com/example/web/dal/sql/functional.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/com/example/web/dal/sql/functional.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/com/example/web/dal/sql/video.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/com/example/web/dal/sql/video.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/com/example/web/dal/sql/video_user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/com/example/web/dal/sql/video_user.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,8 +51,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -273,6 +94,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/framework/src/main/java/com/example" />
     <property name="project.structure.last.edited" value="项目" />
     <property name="project.structure.proportion" value="0.1451379" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -285,11 +107,25 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\zy\Desktop\project\server\system\src\main\java\com\example\system\dal\sql" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.system.utils" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.framework.utils" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BootingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="booting" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.booting.BootingApplication" />
@@ -351,6 +187,10 @@
       <workItem from="1701731951284" duration="1948000" />
       <workItem from="1701736114029" duration="1928000" />
       <workItem from="1701783019209" duration="11599000" />
+      <workItem from="1701867184424" duration="1255000" />
+      <workItem from="1701910231120" duration="27333000" />
+      <workItem from="1701996147174" duration="9287000" />
+      <workItem from="1702173409118" duration="6618000" />
     </task>
     <task id="LOCAL-00001" summary="'新增功能模块'">
       <created>1701673288597</created>
@@ -359,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701673288597</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="'新增功能模块'">
+      <created>1701867237050</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701867237050</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,6 +232,7 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.apache.catalina.connector.Request" memberName="attributes" />
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
         <PinnedItemInfo parentTag="ch.qos.logback.classic.Logger" memberName="childrenList" />
         <PinnedItemInfo parentTag="com.sun.proxy.$Proxy115" memberName="h" />
       </pinned-members>

@@ -32,5 +32,10 @@ public class NoticeExportVO {
      */
     @ExcelProperty("是否已读")
     private String isRead;
+    /**
+     * 接收人
+     */
+    @ExcelProperty("接收人")
+    private String receiver;
 
 }

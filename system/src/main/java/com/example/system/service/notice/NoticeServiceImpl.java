@@ -3,6 +3,9 @@ package com.example.system.service.notice;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
+import com.example.framework.dal.dto.SendMessageDTO;
+
+import com.example.framework.service.WebSocketService;
 import com.example.system.dal.convert.NoticeConvert;
 import com.example.system.dal.dto.notice.NoticeQueryDTO;
 import com.example.system.dal.dto.notice.NoticeSaveDTO;
@@ -22,6 +25,9 @@ import java.util.List;
 public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, NoticeEntity> implements NoticeService {
     @Resource
     NoticeMapper noticeMapper;
+
+    @Resource
+    WebSocketService webSocketService;
 
     /**
      * 获取列表分页
@@ -66,6 +72,21 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, NoticeEntity> i
     public Result<List<NoticeEntity>> noticeSaveListService(List<NoticeSaveDTO> notice) {
         List<NoticeEntity> noticeList = NoticeConvert.INSTANCE.saveList(notice);
         this.saveOrUpdateBatch(noticeList);
+
+        noticeList.forEach(item -> {
+            SendMessageDTO message = new SendMessageDTO();
+            message.setMessage("推送消息");
+
+            if (!item.getReceiver().equals("all")) {
+                message.setUserId(item.getReceiver());
+                webSocketService.sendOneMessage(message);
+            } else {
+                webSocketService.batchSendInfo(message);
+            }
+
+        });
+
+
         return Result.success(noticeList);
     }
 }

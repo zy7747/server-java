@@ -1,7 +1,5 @@
 package com.example.system.controller;
 
-// Controller
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;

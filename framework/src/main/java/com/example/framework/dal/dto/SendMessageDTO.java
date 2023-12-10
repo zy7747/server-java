@@ -11,7 +11,7 @@ public class SendMessageDTO {
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
     @ApiModelProperty(value = "用户id")
-    private Long userId;
+    private String userId;
     /**
      * 发送内容
      */

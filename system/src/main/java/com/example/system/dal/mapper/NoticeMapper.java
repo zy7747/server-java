@@ -33,6 +33,10 @@ public interface NoticeMapper extends BaseMapper<NoticeEntity> {
         if (!StrUtil.hasBlank(notice.getType())) {
             wrapper.eq("type", notice.getType());
         }
+        /* 接收人 */
+        if (!StrUtil.hasBlank(notice.getReceiver())) {
+            wrapper.eq("receiver", notice.getReceiver()).or(i -> i.eq("receiver", "all"));
+        }
         /* 是否已读 */
         if (!StrUtil.hasBlank(notice.getIsRead())) {
             wrapper.eq("is_read", notice.getIsRead());

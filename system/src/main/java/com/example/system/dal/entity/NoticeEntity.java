@@ -37,4 +37,9 @@ public class NoticeEntity extends BaseParamsEntity {
      */
     @ApiModelProperty(value = "是否已读")
     private String isRead;
+    /**
+     * 接收人
+     */
+    @ApiModelProperty(value = "接收人")
+    private String receiver;
 }

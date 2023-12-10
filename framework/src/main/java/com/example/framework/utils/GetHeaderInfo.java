@@ -39,4 +39,15 @@ public class GetHeaderInfo {
 
         return token;
     }
+
+    //获取Token
+    public static Long getTenantId() {
+        HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        }
+        Long tenantId = Long.valueOf(request.getHeader("TenantId"));
+
+        return tenantId;
+    }
 }

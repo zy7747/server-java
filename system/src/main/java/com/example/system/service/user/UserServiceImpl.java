@@ -20,7 +20,6 @@ import com.example.system.dal.vo.user.UserDetailVO;
 import com.example.system.dal.vo.user.UserInfoVO;
 import com.example.system.dal.vo.user.UserListVO;
 import com.example.system.dal.vo.user.UserPageVO;
-import com.example.system.utils.GetMenuList;
 import com.example.system.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -190,8 +189,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         } else {
             return Result.fail("登录失败,请检查账号密码是否正确");
         }
+    }
 
-
+    public void getTree(List<MenuEntity> menus, Long pid, List<MenuEntity> systemMenu) {
+        for (MenuEntity menu : menus) {
+            if (pid.equals(menu.getParentId())) {
+                systemMenu.add(menu);
+                getTree(menus, menu.getId(), systemMenu);
+            }
+        }
     }
 
     /**
@@ -216,12 +222,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         List<RoleEntity> role = new ArrayList<>();
         List<UserRoleEntity> userRoleList = userMapper.selectUserRole(userInfo.getId());
         List<RoleEntity> roleList = roleMapper.selectList(new RoleQueryDTO());
+        List<RoleMenuEntity> roleMenuList = roleMapper.selectRoleMenuList();
 
         //获取角色所有菜单
         List<MenuEntity> menus = new ArrayList<>();
-        List<RoleMenuEntity> roleMenuList = roleMapper.selectRoleMenuList();
         List<MenuEntity> menuList = menuMapper.selectList(new MenuQueryDTO());
 
+        //判断有没有管理员角色
         userRoleList.forEach(items -> {
             roleList.forEach(item -> {
                 if (items.getRoleId().equals(item.getId())) {
@@ -229,27 +236,38 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
                 }
             });
 
-            roleMenuList.forEach(menuItem -> {
-                //找出这个人所有菜单ID
-                if (menuItem.getRoleId().equals(items.getRoleId())) {
-                    menus.add(menuList.stream().filter(c -> c.getId().equals(menuItem.getMenuId())).collect(Collectors.toList()).get(0));
-                }
-            });
+            //如果这个人有管理员角色，则获取所有菜单
+            if (items.getRoleId() == 1704391853990109185L) {
+                menuList.forEach(menuItem -> menus.add(menuItem));
+                //如果没有
+            } else {
+                roleMenuList.forEach(menuItem -> {
+
+                    MenuEntity menuInfo = menuList.stream().filter(c -> c.getId().equals(menuItem.getMenuId())).collect(Collectors.toList()).get(0);
+                    //判断这个人有没有这个菜单权限
+                    if (menuItem.getRoleId().equals(items.getRoleId())) {
+                        menus.add(menuInfo);
+                    }
+                });
+            }
+
+
         });
 
+
+        userInfoVo.setRoles(role);
         // 菜单去重
         List<MenuEntity> menusList = menus.stream()
                 .distinct()
                 .sorted(Comparator.comparing(MenuEntity::getId))
                 .collect(Collectors.toList());
 
-        userInfoVo.setRoles(role);
         //系统菜单过滤
         List<MenuEntity> systemMenu = new ArrayList<>();
 
         for (MenuEntity menu : menusList) {
             if (menu.getType().equals("system") && menu.getPath().equals(loginSystem)) {
-                new GetMenuList().getTree(menusList, menu.getId(), systemMenu);
+                getTree(menusList, menu.getId(), systemMenu);
             }
         }
 

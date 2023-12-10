@@ -18,15 +18,15 @@ CREATE TABLE `person`
     `phone`       VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '电话号码',
     `email`       VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '电子邮箱',
     `birth_date`  datetime                                                      DEFAULT NULL COMMENT '出生日期',
-    `status`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '状态',
-    `remark`      varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
-    `creator`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT '' COMMENT '创建人',
-    `updater`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT '' COMMENT '更新人',
+    `status`      VARCHAR(255) COLLATE utf8mb4_unicode_ci                       DEFAULT NULL COMMENT '状态',
+    `remark`      VARCHAR(512) COLLATE utf8mb4_unicode_ci                       DEFAULT NULL COMMENT '备注',
+    `creator`     VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT '' COMMENT '创建人',
+    `updater`     VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT '' COMMENT '更新人',
     `create_time` datetime                                                      DEFAULT NULL COMMENT '创建时间',
     `update_time` datetime                                                      DEFAULT NULL COMMENT '更新时间',
     `is_deleted`  bit(1)  NOT NULL                                              DEFAULT b'0' COMMENT '是否删除',
     `tenant_id`   bigint                                                        DEFAULT NULL COMMENT '租户id',
-    `version`     tinyint NOT NULL                                              DEFAULT '0' COMMENT '乐观锁',
+    `version`     TINYINT NOT NULL                                              DEFAULT 0 COMMENT '乐观锁',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
