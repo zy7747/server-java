@@ -3,12 +3,12 @@ package com.example.system.service.role;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.system.dal.convert.RoleConvert;
+import com.example.system.convert.RoleConvert;
 import com.example.system.dal.dto.role.RoleQueryDTO;
 import com.example.system.dal.dto.role.RoleSaveDTO;
 import com.example.system.dal.entity.RoleEntity;
 import com.example.system.dal.entity.RoleMenuEntity;
-import com.example.system.dal.mapper.RoleMapper;
+import com.example.system.mapper.RoleMapper;
 import com.example.system.dal.vo.role.RoleDetailVO;
 import com.example.system.dal.vo.role.RoleListVO;
 import com.example.system.dal.vo.role.RolePageVO;
@@ -79,17 +79,22 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
         List<RoleEntity> role = RoleConvert.INSTANCE.saveList(roleList);
         this.saveOrUpdateBatch(role);
 
-        roleList.forEach(item -> {
+        // 添加菜单
+        for (int i = 0; i < roleList.size(); i++) {
+            RoleSaveDTO item = roleList.get(i);
             //先全部删除
-            roleMapper.deleteRoleMenu(role.get(0).getId());
+            roleMapper.deleteRoleMenu(role.get(i).getId());
             for (Long menu : item.getMenuList()) {
                 //将角色数据塞进去
                 RoleMenuEntity roleMenu = new RoleMenuEntity();
-                roleMenu.setRoleId(role.get(0).getId());
+                roleMenu.setRoleId(role.get(i).getId());
                 roleMenu.setMenuId(menu);
                 //在批量新增
                 roleMapper.insertRoleMenu(roleMenu);
             }
+        }
+        roleList.forEach(item -> {
+
         });
 
         return Result.success(role);

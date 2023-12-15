@@ -6,11 +6,11 @@ import com.example.framework.common.Result;
 import com.example.framework.dal.dto.SendMessageDTO;
 
 import com.example.framework.service.WebSocketService;
-import com.example.system.dal.convert.NoticeConvert;
+import com.example.system.convert.NoticeConvert;
 import com.example.system.dal.dto.notice.NoticeQueryDTO;
 import com.example.system.dal.dto.notice.NoticeSaveDTO;
 import com.example.system.dal.entity.NoticeEntity;
-import com.example.system.dal.mapper.NoticeMapper;
+import com.example.system.mapper.NoticeMapper;
 import com.example.system.dal.vo.notice.NoticeDetailVO;
 import com.example.system.dal.vo.notice.NoticeListVO;
 import com.example.system.dal.vo.notice.NoticePageVO;

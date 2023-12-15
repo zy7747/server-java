@@ -1,6 +1,7 @@
 package com.example.system.dal.vo.person;
 
 import com.example.framework.dal.vo.BaseParamsVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -95,6 +96,7 @@ public class PersonListVO extends BaseParamsVO {
     /**
      * 出生日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty(value = "出生日期")
     private Date birthDate;
 }

@@ -32,12 +32,22 @@
 
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>app</artifactId>
+            <artifactId>file</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>web</artifactId>
+            <artifactId>pay</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>job</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>statistics</artifactId>
         </dependency>
     </dependencies>
 

@@ -23,8 +23,10 @@
     <!--子模块-->
     <modules>
         <module>system</module>
-        <module>app</module>
-        <module>web</module>
+        <module>file</module>
+        <module>statistics</module>
+        <module>job</module>
+        <module>pay</module>
         <module>dependencies</module>
         <module>framework</module>
         <module>booting</module>
@@ -60,24 +62,38 @@
                 <version>${version}</version>
             </dependency>
 
-            <!-- system模块 -->
+            <!-- 系统模块 -->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>system</artifactId>
                 <version>${version}</version>
             </dependency>
 
-            <!-- app模块 -->
+            <!-- 文件模块 -->
             <dependency>
                 <groupId>com.example</groupId>
-                <artifactId>app</artifactId>
+                <artifactId>file</artifactId>
                 <version>${version}</version>
             </dependency>
 
-            <!-- web模块 -->
+            <!-- 定时任务模块 -->
             <dependency>
                 <groupId>com.example</groupId>
-                <artifactId>web</artifactId>
+                <artifactId>job</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <!-- 支付功能模块 -->
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>pay</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <!-- 统计功能模块 -->
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>statistics</artifactId>
                 <version>${version}</version>
             </dependency>
 

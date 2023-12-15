@@ -1,7 +1,7 @@
 package com.example.framework.common;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.example.framework.utils.GetHeaderInfo;
+import com.example.framework.utils.GetHeaderUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         metaObject.setValue("createTime", null);
         metaObject.setValue("creator", null);
         strictInsertFill(metaObject, "createTime", Date.class, new Date());
-        strictInsertFill(metaObject, "creator", String.class, GetHeaderInfo.getLoginUserId());
+        strictInsertFill(metaObject, "creator", String.class, GetHeaderUtils.getLoginUserId());
     }
 
     /**
@@ -32,6 +32,6 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         metaObject.setValue("updateTime", null);
         metaObject.setValue("updater", null);
         strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
-        strictUpdateFill(metaObject, "updater", String.class, GetHeaderInfo.getLoginUserId());
+        strictUpdateFill(metaObject, "updater", String.class, GetHeaderUtils.getLoginUserId());
     }
 }

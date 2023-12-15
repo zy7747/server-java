@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Configuration
-@MapperScan(basePackages = "com.example.*.dal.mapper")
+@MapperScan(basePackages = "com.example.*.mapper")
 public class MybatisPlusConfig {
     /**
      * /**

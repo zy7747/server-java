@@ -3,20 +3,22 @@ package com.example.system.controller;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
 import com.example.framework.utils.Excel;
-import com.example.system.dal.convert.UserConvert;
+import com.example.system.convert.UserConvert;
 import com.example.system.dal.dto.user.LoginDTO;
 import com.example.system.dal.dto.user.SignUpDTO;
 import com.example.system.dal.dto.user.UserQueryDTO;
 import com.example.system.dal.dto.user.UserSaveDTO;
 import com.example.system.dal.entity.UserEntity;
-import com.example.system.dal.mapper.UserMapper;
+import com.example.system.mapper.UserMapper;
 import com.example.system.dal.vo.user.*;
 import com.example.system.service.user.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +53,7 @@ public class UserController {
 
     @GetMapping("/detail")
     @ApiOperation(value = "详情")
+    @PreAuthorize("hasAuthority('system:user:detail')")
     public Result<UserDetailVO> userDetail(Long id) {
         return userService.detailService(id);
     }
@@ -69,6 +72,15 @@ public class UserController {
             userMapper.deleteUserRole(item.getId());
         });
         return Result.success("删除成功");
+    }
+
+    @PostMapping("/import")
+    @ApiOperation(value = "导入")
+    public Result<List<UserEntity>> noticeImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
+
+        List<UserSaveDTO> userList = UserConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), UserExportVO.class));
+
+        return userService.saveListService(userList);
     }
 
     @GetMapping("/export")

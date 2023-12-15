@@ -27,7 +27,7 @@ public class JwtUtil {
     }
 
     //解析TOKEN
-    public Object getTokenInfo(String token) {
+    public static Object getTokenInfo(String token) {
         JWT jwt = JWTUtil.parseToken(token);
         //获取用户ID
         return jwt.getPayload("id");

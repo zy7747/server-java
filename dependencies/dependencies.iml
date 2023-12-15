@@ -43,8 +43,13 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.27" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.27" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.27" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.27" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.27" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.7.12" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.27" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.7.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.7.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.7.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.7.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-validation:2.7.12" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.75" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:6.2.5.Final" level="project" />
@@ -69,6 +74,12 @@
     <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.92.Final" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.29" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.4" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.33" level="project" />
+    <orderEntry type="library" name="Maven: com.auth0:java-jwt:3.4.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.5" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.5" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.5" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
     <orderEntry type="library" name="Maven: com.spring4all:swagger-spring-boot-starter:1.7.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-swagger-ui:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-spring-web:2.8.0" level="project" />
@@ -107,11 +118,7 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.14" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.16" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.9" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.5" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.5" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.5" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.59" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:easyexcel:2.1.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.17" level="project" />

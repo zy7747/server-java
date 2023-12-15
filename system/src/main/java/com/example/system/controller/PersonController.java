@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
 import com.example.framework.utils.Excel;
-import com.example.system.dal.convert.PersonConvert;
+import com.example.system.convert.PersonConvert;
 import com.example.system.dal.dto.person.PersonQueryDTO;
 import com.example.system.dal.dto.person.PersonSaveDTO;
 import com.example.system.dal.entity.PersonEntity;
-import com.example.system.dal.mapper.PersonMapper;
+import com.example.system.mapper.PersonMapper;
 import com.example.system.dal.vo.person.PersonDetailVO;
 import com.example.system.dal.vo.person.PersonExportVO;
 import com.example.system.dal.vo.person.PersonListVO;
@@ -65,7 +65,7 @@ public class PersonController {
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
-    public Result<Object> personDelete(@RequestBody List<PersonEntity> ids) {
+    public Result<Object> personDelete(@RequestBody List<PersonQueryDTO> ids) {
         ids.forEach(item -> personMapper.deleteById(item.getId()));
         return Result.success("删除成功");
     }

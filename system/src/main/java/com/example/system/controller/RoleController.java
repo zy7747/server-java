@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
 import com.example.framework.utils.Excel;
-import com.example.system.dal.convert.RoleConvert;
+import com.example.system.convert.RoleConvert;
 import com.example.system.dal.dto.role.RoleQueryDTO;
 import com.example.system.dal.dto.role.RoleSaveDTO;
 import com.example.system.dal.entity.RoleEntity;
-import com.example.system.dal.mapper.RoleMapper;
+import com.example.system.mapper.RoleMapper;
 import com.example.system.dal.vo.role.RoleDetailVO;
 import com.example.system.dal.vo.role.RoleExportVO;
 import com.example.system.dal.vo.role.RoleListVO;
@@ -17,8 +17,10 @@ import com.example.system.service.role.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -71,6 +73,13 @@ public class RoleController {
             roleMapper.deleteById(item.getId());
         });
         return Result.success("删除成功");
+    }
+
+    @PostMapping("/import")
+    @ApiOperation(value = "导入")
+    public Result<List<RoleEntity>> roleImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
+        List<RoleSaveDTO> roleList = RoleConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), RoleExportVO.class));
+        return roleService.saveListService(roleList);
     }
 
     @GetMapping("/export")

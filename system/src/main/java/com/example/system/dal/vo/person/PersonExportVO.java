@@ -1,6 +1,7 @@
 package com.example.system.dal.vo.person;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
@@ -93,6 +94,7 @@ public class PersonExportVO {
     /**
      * 出生日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ExcelProperty("出生日期")
     private Date birthDate;
 }

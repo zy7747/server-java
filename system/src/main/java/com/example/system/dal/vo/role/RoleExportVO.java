@@ -13,4 +13,10 @@ public class RoleExportVO {
     @ExcelProperty("角色名称")
     private String roleName;
 
+    /**
+     * 角色编码
+     */
+    @ExcelProperty("角色编码")
+    private String roleCode;
+
 }

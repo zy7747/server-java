@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.system.dal.convert.UserConvert;
+import com.example.system.convert.UserConvert;
 import com.example.system.dal.dto.menu.MenuQueryDTO;
 import com.example.system.dal.dto.role.RoleQueryDTO;
 import com.example.system.dal.dto.user.LoginDTO;
@@ -13,9 +13,9 @@ import com.example.system.dal.dto.user.SignUpDTO;
 import com.example.system.dal.dto.user.UserQueryDTO;
 import com.example.system.dal.dto.user.UserSaveDTO;
 import com.example.system.dal.entity.*;
-import com.example.system.dal.mapper.MenuMapper;
-import com.example.system.dal.mapper.RoleMapper;
-import com.example.system.dal.mapper.UserMapper;
+import com.example.system.mapper.MenuMapper;
+import com.example.system.mapper.RoleMapper;
+import com.example.system.mapper.UserMapper;
 import com.example.system.dal.vo.user.UserDetailVO;
 import com.example.system.dal.vo.user.UserInfoVO;
 import com.example.system.dal.vo.user.UserListVO;
@@ -140,8 +140,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
                 }
             }
         }
-        //删除所有关联的角色
-        userMapper.deleteUserRoleByIds(ids.substring(0, ids.length() - 1));
+        //如果之前添加过角色删除所有关联的角色
+        if (userList.get(0).getId() != null) {
+            userMapper.deleteUserRoleByIds(ids.substring(0, ids.length() - 1));
+        }
         //插入新的角色
         userMapper.batchInsertUserRole(UserRoleList);
 
@@ -238,7 +240,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
             //如果这个人有管理员角色，则获取所有菜单
             if (items.getRoleId() == 1704391853990109185L) {
-                menuList.forEach(menuItem -> menus.add(menuItem));
+                menus.addAll(menuList);
                 //如果没有
             } else {
                 roleMenuList.forEach(menuItem -> {
