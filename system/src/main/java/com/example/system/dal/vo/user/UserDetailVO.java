@@ -64,4 +64,11 @@ public class UserDetailVO extends BaseParamsVO {
     @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
     @ApiModelProperty(value = "角色")
     private ArrayList<Long> roles;
+
+    /**
+     * 权限
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
+    @ApiModelProperty(value = "权限")
+    private ArrayList<Long> permissions;
 }

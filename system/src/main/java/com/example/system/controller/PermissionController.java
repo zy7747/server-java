@@ -3,7 +3,7 @@ package com.example.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
 import com.example.system.convert.PermissionConvert;
 import com.example.system.dal.dto.permission.PermissionQueryDTO;
 import com.example.system.dal.dto.permission.PermissionSaveDTO;
@@ -73,13 +73,13 @@ public class PermissionController {
     @PostMapping("/import")
     @ApiOperation(value = "导入")
     public Result<List<PermissionEntity>> permissionImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
-        List<PermissionSaveDTO> permissionList = PermissionConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), PermissionExportVO.class));
+        List<PermissionSaveDTO> permissionList = PermissionConvert.INSTANCE.imports(ExcelUtils.imports(multipartFile.getInputStream(), PermissionExportVO.class));
         return permissionService.permissionSaveListService(permissionList);
     }
 
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void permissionExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "权限.xlsx", "权限", PermissionExportVO.class, PermissionConvert.INSTANCE.export(permissionMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "权限.xlsx", "权限", PermissionExportVO.class, PermissionConvert.INSTANCE.export(permissionMapper.selectList(new QueryWrapper<>())));
     }
 }

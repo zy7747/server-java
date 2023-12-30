@@ -29,6 +29,11 @@
             <groupId>com.example</groupId>
             <artifactId>system</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>file</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

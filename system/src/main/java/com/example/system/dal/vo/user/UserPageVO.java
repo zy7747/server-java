@@ -45,8 +45,8 @@ public class UserPageVO extends BaseParamsVO {
      */
     @ApiModelProperty(value = "用户名")
     private String user;
-    
-    
+
+
     /**
      * 头像
      */
@@ -61,14 +61,16 @@ public class UserPageVO extends BaseParamsVO {
     /**
      * 用户类型
      */
+    @Dict(code = "user_type")
     @ApiModelProperty(value = "用户类型")
     private String userType;
-  
-    
+
+
     /**
      * 角色
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
     @ApiModelProperty(value = "角色")
     private ArrayList<Long> roles;
+
 }

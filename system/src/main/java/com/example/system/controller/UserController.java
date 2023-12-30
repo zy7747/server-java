@@ -2,13 +2,15 @@ package com.example.system.controller;
 
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
+import com.example.system.annotation.Log;
 import com.example.system.convert.UserConvert;
 import com.example.system.dal.dto.user.LoginDTO;
 import com.example.system.dal.dto.user.SignUpDTO;
 import com.example.system.dal.dto.user.UserQueryDTO;
 import com.example.system.dal.dto.user.UserSaveDTO;
 import com.example.system.dal.entity.UserEntity;
+import com.example.system.enums.OperateType;
 import com.example.system.mapper.UserMapper;
 import com.example.system.dal.vo.user.*;
 import com.example.system.service.user.UserService;
@@ -53,23 +55,26 @@ public class UserController {
 
     @GetMapping("/detail")
     @ApiOperation(value = "详情")
-    @PreAuthorize("hasAuthority('system:user:detail')")
     public Result<UserDetailVO> userDetail(Long id) {
         return userService.detailService(id);
     }
 
     @PostMapping("/saveList")
     @ApiOperation(value = "批量新增/修改")
+    @Log(title = "用户新增/修改", module = "配置中心", content = "用户新增/修改", type = OperateType.INSERT)
     public Result<List<UserEntity>> userSaveList(@RequestBody @Valid List<UserSaveDTO> users) {
         return userService.saveListService(users);
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
+    @Log(title = "用户删除", module = "用户管理", content = "用户删除", type = OperateType.DELETE)
+    @PreAuthorize("hasAuthority('system:user:delete')")
     public Result<Object> userDelete(@RequestBody List<UserQueryDTO> ids) {
         ids.forEach(item -> {
             userMapper.deleteById(item.getId());
             userMapper.deleteUserRole(item.getId());
+            userMapper.deleteUserPermissionById(item.getId());
         });
         return Result.success("删除成功");
     }
@@ -78,7 +83,7 @@ public class UserController {
     @ApiOperation(value = "导入")
     public Result<List<UserEntity>> noticeImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
 
-        List<UserSaveDTO> userList = UserConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), UserExportVO.class));
+        List<UserSaveDTO> userList = UserConvert.INSTANCE.imports(ExcelUtils.imports(multipartFile.getInputStream(), UserExportVO.class));
 
         return userService.saveListService(userList);
     }
@@ -86,7 +91,7 @@ public class UserController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void roleExport(HttpServletResponse response, UserQueryDTO user) throws IOException {
-        Excel.export(response, "用户.xlsx", "用户", UserExportVO.class, UserConvert.INSTANCE.export(userMapper.selectList(user)));
+        ExcelUtils.export(response, "用户.xlsx", "用户", UserExportVO.class, UserConvert.INSTANCE.export(userMapper.selectList(user)));
     }
 
     @GetMapping("/login")

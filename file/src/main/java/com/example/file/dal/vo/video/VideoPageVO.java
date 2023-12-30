@@ -16,6 +16,7 @@ public class VideoPageVO extends BaseParamsVO {
     /**
      * 父节点id
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
     @ApiModelProperty(value = "父节点id")
     private Long parentId;
     /**
@@ -64,9 +65,9 @@ public class VideoPageVO extends BaseParamsVO {
     @ApiModelProperty(value = "标签")
     private String label;
     /**
-     * 作者名称
+     * 作者
      */
-    @ApiModelProperty(value = "作者名称")
+    @ApiModelProperty(value = "作者")
     private String author;
     /**
      * 季
@@ -83,8 +84,17 @@ public class VideoPageVO extends BaseParamsVO {
      */
     @ApiModelProperty(value = "时长")
     private Integer duration;
-   
-    
+    /**
+     * 视频存储节点
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
+    @ApiModelProperty(value = "视频存储节点")
+    private Long savePath;
+    /**
+     * 是否是集合
+     */
+    @ApiModelProperty(value = "是否是集合")
+    private Integer isCollection;
     /**
      * 播放量
      */

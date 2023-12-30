@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.ArrayList;
+
 @Data
 @ApiModel(value = "修改")
 @EqualsAndHashCode(callSuper = true)
@@ -39,5 +41,5 @@ public class NoticeSaveDTO extends BaseParamsDTO {
      * 接收人
      */
     @ApiModelProperty(value = "接收人")
-    private String receiver;
+    private ArrayList<String> receiverList;
 }

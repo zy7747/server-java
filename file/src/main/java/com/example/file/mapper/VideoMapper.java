@@ -19,28 +19,65 @@ public interface VideoMapper extends BaseMapper<VideoEntity> {
     default QueryWrapper<VideoEntity> search(VideoQueryDTO video) {
         QueryWrapper<VideoEntity> wrapper = new QueryWrapper<>();
 
-        if (!StrUtil.hasBlank(video.getTitle())) {
-            wrapper.like("title", video.getTitle());
-        }
-
+        /* 视频名称 */
         if (!StrUtil.hasBlank(video.getVideoName())) {
-            wrapper.like("video_name", video.getVideoName());
+            wrapper.eq("video_name", video.getVideoName());
         }
-
-        if (!StrUtil.hasBlank(video.getRegion())) {
-            wrapper.eq("region", video.getRegion());
+        /* 视频标题 */
+        if (!StrUtil.hasBlank(video.getTitle())) {
+            wrapper.eq("title", video.getTitle());
         }
-
-        if (!StrUtil.hasBlank(video.getVideoType())) {
-            wrapper.eq("video_type", video.getVideoType());
-        }
-
+        /* 视频分类 */
         if (!StrUtil.hasBlank(video.getType())) {
             wrapper.eq("type", video.getType());
         }
-
+        /* 视频地区 */
+        if (!StrUtil.hasBlank(video.getRegion())) {
+            wrapper.eq("region", video.getRegion());
+        }
+        /* url地址 */
+        if (!StrUtil.hasBlank(video.getUrl())) {
+            wrapper.eq("url", video.getUrl());
+        }
+        /* 视频图片 */
+        if (!StrUtil.hasBlank(video.getPicture())) {
+            wrapper.eq("picture", video.getPicture());
+        }
+        /* 视频类型 */
+        if (!StrUtil.hasBlank(video.getVideoType())) {
+            wrapper.eq("video_type", video.getVideoType());
+        }
+        /* 视频简介 */
+        if (!StrUtil.hasBlank(video.getProfile())) {
+            wrapper.eq("profile", video.getProfile());
+        }
+        /* 标签 */
+        if (!StrUtil.hasBlank(video.getLabel())) {
+            wrapper.eq("label", video.getLabel());
+        }
+        /* 作者 */
         if (!StrUtil.hasBlank(video.getAuthor())) {
-            wrapper.like("author", video.getAuthor());
+            wrapper.eq("author", video.getAuthor());
+        }
+        /* 状态 */
+        if (!StrUtil.hasBlank(video.getStatus())) {
+            wrapper.eq("status", video.getStatus());
+        }
+        /* 备注 */
+        if (!StrUtil.hasBlank(video.getRemark())) {
+            wrapper.eq("remark", video.getRemark());
+        }
+        /* 创建人 */
+        if (!StrUtil.hasBlank(video.getCreator())) {
+            wrapper.eq("creator", video.getCreator());
+        }
+        /* 更新人 */
+        if (!StrUtil.hasBlank(video.getUpdater())) {
+            wrapper.eq("updater", video.getUpdater());
+        }
+        /* 是否是集合 */
+        if (video.getIsCollection() != null) {
+            wrapper.eq("isCollection", video.getIsCollection());
         }
 
         //排序方式
@@ -76,6 +113,8 @@ public interface VideoMapper extends BaseMapper<VideoEntity> {
     //视频子列表查询
     default List<VideoEntity> selectVideoList(Long id) {
         QueryWrapper<VideoEntity> wrapper = new QueryWrapper<>();
+
+        wrapper.orderByAsc("episode");
 
         wrapper.eq("parent_id", id);
 

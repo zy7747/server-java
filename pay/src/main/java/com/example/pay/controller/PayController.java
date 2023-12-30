@@ -3,7 +3,7 @@ package com.example.pay.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
 import com.example.pay.convert.PayConvert;
 import com.example.pay.dal.dto.pay.PayQueryDTO;
 import com.example.pay.dal.dto.pay.PaySaveDTO;
@@ -73,13 +73,13 @@ public class PayController {
     @PostMapping("/import")
     @ApiOperation(value = "导入")
     public Result<List<PayEntity>> payImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
-        List<PaySaveDTO> payList = PayConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), PayExportVO.class));
+        List<PaySaveDTO> payList = PayConvert.INSTANCE.imports(ExcelUtils.imports(multipartFile.getInputStream(), PayExportVO.class));
         return payService.paySaveListService(payList);
     }
 
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void payExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "支付功能.xlsx", "支付功能", PayExportVO.class, PayConvert.INSTANCE.export(payMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "支付功能.xlsx", "支付功能", PayExportVO.class, PayConvert.INSTANCE.export(payMapper.selectList(new QueryWrapper<>())));
     }
 }

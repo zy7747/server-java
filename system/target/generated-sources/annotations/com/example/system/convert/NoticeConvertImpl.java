@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-15T23:28:28+0800",
+    date = "2023-12-29T15:35:26+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class NoticeConvertImpl implements NoticeConvert {
@@ -84,10 +84,37 @@ public class NoticeConvertImpl implements NoticeConvert {
 
         List<NoticeEntity> list = new ArrayList<NoticeEntity>( notices.size() );
         for ( NoticeSaveDTO noticeSaveDTO : notices ) {
-            list.add( noticeSaveDTOToNoticeEntity( noticeSaveDTO ) );
+            list.add( save( noticeSaveDTO ) );
         }
 
         return list;
+    }
+
+    @Override
+    public NoticeEntity save(NoticeSaveDTO notices) {
+        if ( notices == null ) {
+            return null;
+        }
+
+        NoticeEntity noticeEntity = new NoticeEntity();
+
+        noticeEntity.setId( notices.getId() );
+        noticeEntity.setStatus( notices.getStatus() );
+        noticeEntity.setRemark( notices.getRemark() );
+        noticeEntity.setCreator( notices.getCreator() );
+        noticeEntity.setUpdater( notices.getUpdater() );
+        noticeEntity.setCreateTime( notices.getCreateTime() );
+        noticeEntity.setUpdateTime( notices.getUpdateTime() );
+        noticeEntity.setIsDeleted( notices.getIsDeleted() );
+        noticeEntity.setTenantId( notices.getTenantId() );
+        noticeEntity.setVersion( notices.getVersion() );
+        noticeEntity.setNoticeName( notices.getNoticeName() );
+        noticeEntity.setNoticeContent( notices.getNoticeContent() );
+        noticeEntity.setPushModule( notices.getPushModule() );
+        noticeEntity.setType( notices.getType() );
+        noticeEntity.setIsRead( notices.getIsRead() );
+
+        return noticeEntity;
     }
 
     @Override
@@ -185,33 +212,6 @@ public class NoticeConvertImpl implements NoticeConvert {
         return noticeListVO;
     }
 
-    protected NoticeEntity noticeSaveDTOToNoticeEntity(NoticeSaveDTO noticeSaveDTO) {
-        if ( noticeSaveDTO == null ) {
-            return null;
-        }
-
-        NoticeEntity noticeEntity = new NoticeEntity();
-
-        noticeEntity.setId( noticeSaveDTO.getId() );
-        noticeEntity.setStatus( noticeSaveDTO.getStatus() );
-        noticeEntity.setRemark( noticeSaveDTO.getRemark() );
-        noticeEntity.setCreator( noticeSaveDTO.getCreator() );
-        noticeEntity.setUpdater( noticeSaveDTO.getUpdater() );
-        noticeEntity.setCreateTime( noticeSaveDTO.getCreateTime() );
-        noticeEntity.setUpdateTime( noticeSaveDTO.getUpdateTime() );
-        noticeEntity.setIsDeleted( noticeSaveDTO.getIsDeleted() );
-        noticeEntity.setTenantId( noticeSaveDTO.getTenantId() );
-        noticeEntity.setVersion( noticeSaveDTO.getVersion() );
-        noticeEntity.setNoticeName( noticeSaveDTO.getNoticeName() );
-        noticeEntity.setNoticeContent( noticeSaveDTO.getNoticeContent() );
-        noticeEntity.setPushModule( noticeSaveDTO.getPushModule() );
-        noticeEntity.setType( noticeSaveDTO.getType() );
-        noticeEntity.setIsRead( noticeSaveDTO.getIsRead() );
-        noticeEntity.setReceiver( noticeSaveDTO.getReceiver() );
-
-        return noticeEntity;
-    }
-
     protected NoticeExportVO noticeEntityToNoticeExportVO(NoticeEntity noticeEntity) {
         if ( noticeEntity == null ) {
             return null;
@@ -241,7 +241,6 @@ public class NoticeConvertImpl implements NoticeConvert {
         noticeSaveDTO.setPushModule( noticeExportVO.getPushModule() );
         noticeSaveDTO.setType( noticeExportVO.getType() );
         noticeSaveDTO.setIsRead( noticeExportVO.getIsRead() );
-        noticeSaveDTO.setReceiver( noticeExportVO.getReceiver() );
 
         return noticeSaveDTO;
     }

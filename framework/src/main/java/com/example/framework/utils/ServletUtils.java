@@ -6,7 +6,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class GetHeaderUtils {
+public class ServletUtils {
 
     public static HttpServletRequest getRequest() {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
@@ -27,14 +27,45 @@ public class GetHeaderUtils {
         return request.getHeader("userid");
     }
 
+    //获取当前登录人IP地址
+    public static String getLoginUserIp() {
+        HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        }
+
+        return request.getRemoteAddr();
+    }
+
+    //获取当前登录人操作地
+    public static String getLoginUserAdder() {
+        HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        }
+
+        return request.getRemoteHost();
+    }
+
     //获取Token
     public static String getToken() {
         HttpServletRequest request = getRequest();
         if (request == null) {
             return null;
         }
-        String token = request.getHeader("Authorization");
 
-        return token;
+        return request.getHeader("Authorization");
     }
+
+    //获取租户号
+    public static String getTenantId() {
+        HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        }
+
+        return request.getHeader("TenantId");
+    }
+
+
 }

@@ -20,6 +20,12 @@ public class StatisticsGetVO {
     private Integer videoTotal;
 
     /**
+     * 字典总数
+     */
+    @ApiModelProperty(value = "字典总数")
+    private Integer DictTotal;
+
+    /**
      * 视频类型统计
      */
     @ApiModelProperty(value = "视频类型统计")

@@ -1,7 +1,5 @@
 package com.example.system.service.person;
 
-//Service
-
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
 import com.example.system.dal.dto.person.PersonQueryDTO;

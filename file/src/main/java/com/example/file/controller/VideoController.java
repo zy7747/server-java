@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.file.mapper.VideoMapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
 import com.example.file.convert.VideoConvert;
 import com.example.file.dal.dto.video.HotVideoListQueryDTO;
 import com.example.file.dal.dto.video.VideoQueryDTO;
@@ -15,9 +15,12 @@ import com.example.file.dal.vo.video.VideoExportVO;
 import com.example.file.dal.vo.video.VideoListVO;
 import com.example.file.dal.vo.video.VideoPageVO;
 import com.example.file.service.video.VideoService;
+import com.example.system.annotation.Log;
+import com.example.system.enums.OperateType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,12 +62,14 @@ public class VideoController {
 
     @PostMapping("/saveList")
     @ApiOperation(value = "批量新增/修改")
+    @Log(title = "视频新增/修改", module = "文件管理", content = "视频新增/修改", type = OperateType.INSERT)
     public Result<List<VideoEntity>> videoSaveList(@RequestBody @Valid List<VideoSaveDTO> videos) {
         return videoService.saveListService(videos);
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
+    @Log(title = "视频删除", module = "文件管理", content = "视频删除", type = OperateType.DELETE)
     public Result<Object> videoDelete(@RequestBody List<VideoQueryDTO> ids) {
         ids.forEach(item -> videoMapper.deleteById(item.getId()));
         return Result.success("删除成功");
@@ -85,6 +90,6 @@ public class VideoController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void videoExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "视频.xlsx", "视频", VideoExportVO.class, VideoConvert.INSTANCE.export(videoMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "视频.xlsx", "视频", VideoExportVO.class, VideoConvert.INSTANCE.export(videoMapper.selectList(new QueryWrapper<>())));
     }
 }

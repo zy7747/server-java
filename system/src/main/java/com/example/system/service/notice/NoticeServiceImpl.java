@@ -9,11 +9,14 @@ import com.example.framework.service.WebSocketService;
 import com.example.system.convert.NoticeConvert;
 import com.example.system.dal.dto.notice.NoticeQueryDTO;
 import com.example.system.dal.dto.notice.NoticeSaveDTO;
+import com.example.system.dal.dto.user.UserQueryDTO;
 import com.example.system.dal.entity.NoticeEntity;
+import com.example.system.dal.entity.UserEntity;
 import com.example.system.mapper.NoticeMapper;
 import com.example.system.dal.vo.notice.NoticeDetailVO;
 import com.example.system.dal.vo.notice.NoticeListVO;
 import com.example.system.dal.vo.notice.NoticePageVO;
+import com.example.system.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,9 @@ import java.util.List;
 public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, NoticeEntity> implements NoticeService {
     @Resource
     NoticeMapper noticeMapper;
+
+    @Resource
+    UserMapper userMapper;
 
     @Resource
     WebSocketService webSocketService;
@@ -65,28 +71,42 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, NoticeEntity> i
     /**
      * 批量新增/修改
      *
-     * @param notice 新增/修改内容
+     * @param noticeList 新增/修改内容
      * @return 新增/修改后数据
      */
     @Override
-    public Result<List<NoticeEntity>> noticeSaveListService(List<NoticeSaveDTO> notice) {
-        List<NoticeEntity> noticeList = NoticeConvert.INSTANCE.saveList(notice);
-        this.saveOrUpdateBatch(noticeList);
+    public Result<Object> noticeSaveListService(List<NoticeSaveDTO> noticeList) {
+        SendMessageDTO message = new SendMessageDTO();
+        message.setMessage("推送消息");
 
         noticeList.forEach(item -> {
-            SendMessageDTO message = new SendMessageDTO();
-            message.setMessage("推送消息");
+            if (item.getReceiverList().size() > 0) {
+                //如果接收人为全部人
+                if (item.getReceiverList().get(0).equals("1")) {
+                    //查出所有人员并循环添加通知信息
+                    List<UserEntity> userList = userMapper.selectList(new UserQueryDTO());
 
-            if (!item.getReceiver().equals("all")) {
-                message.setUserId(item.getReceiver());
-                webSocketService.sendOneMessage(message);
-            } else {
-                webSocketService.batchSendInfo(message);
+                    userList.forEach(userItem -> {
+                        NoticeEntity notice = NoticeConvert.INSTANCE.save(item);
+                        notice.setReceiver(userItem.getId().toString());
+                        this.saveOrUpdate(notice);
+                        message.setUserId(userItem.getId().toString());
+                        webSocketService.sendOneMessage(message);
+                    });
+                } else {
+                    item.getReceiverList().forEach(receiver -> {
+                        NoticeEntity notice = NoticeConvert.INSTANCE.save(item);
+                        notice.setReceiver(receiver);
+                        this.saveOrUpdate(notice);
+                        message.setUserId(receiver);
+                        webSocketService.sendOneMessage(message);
+                    });
+
+                }
             }
-
         });
 
 
-        return Result.success(noticeList);
+        return Result.success("推送成功");
     }
 }

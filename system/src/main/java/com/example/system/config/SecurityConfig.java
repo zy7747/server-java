@@ -51,6 +51,12 @@ public class SecurityConfig {
                 .csrf()
                 .disable();// CSRF 禁用，因为不使用 Session
 
+        //允许iframe嵌入
+        httpSecurity
+                .headers()
+                .frameOptions()
+                .disable();
+
         httpSecurity.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)// cors security 解决方案
                 .and()
@@ -63,7 +69,7 @@ public class SecurityConfig {
                 // 1. 静态资源，可匿名访问
                 .antMatchers(HttpMethod.GET, "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/files/**").permitAll()
                 // 2. 可匿名访问接口
-                .antMatchers("/websocket/**", "/user/login", "/user/signUp").permitAll()
+                .antMatchers("/websocket/**", "/user/login", "/user/signUp", "/video/**", "/file/**").permitAll()
                 // 3. swagger
                 .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/*/api-docs", "/druid/**", "/doc.html").permitAll()
                 // 4. 其他接口需要校验

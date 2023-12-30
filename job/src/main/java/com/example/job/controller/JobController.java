@@ -3,7 +3,7 @@ package com.example.job.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
 import com.example.job.convert.JobConvert;
 import com.example.job.dal.dto.job.JobQueryDTO;
 import com.example.job.dal.dto.job.JobSaveDTO;
@@ -78,6 +78,6 @@ public class JobController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void jobExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "定时任务.xlsx", "定时任务", JobExportVO.class, JobConvert.INSTANCE.export(jobMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "定时任务.xlsx", "定时任务", JobExportVO.class, JobConvert.INSTANCE.export(jobMapper.selectList(new QueryWrapper<>())));
     }
 }

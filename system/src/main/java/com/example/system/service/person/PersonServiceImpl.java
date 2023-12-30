@@ -1,7 +1,5 @@
 package com.example.system.service.person;
 
-// ServiceImpl
-
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;

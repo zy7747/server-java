@@ -1,6 +1,10 @@
 package com.example.system.filter;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.system.dal.entity.PermissionEntity;
 import com.example.system.dal.entity.UserEntity;
+import com.example.system.dal.entity.UserPermissionEntity;
+import com.example.system.mapper.PermissionMapper;
 import com.example.system.mapper.UserMapper;
 import com.example.system.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +31,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Resource
     UserMapper userMapper;
 
+    @Resource
+    PermissionMapper permissionMapper;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //获取token
@@ -50,10 +57,19 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
         //获取用户信息
         UserEntity userInfo = userMapper.selectById(userId);
-
+        //查出所有权限
+        List<PermissionEntity> allPermission = permissionMapper.selectList(new QueryWrapper<>());
+        //权限列表
         List<GrantedAuthority> list = new ArrayList<>();
-        GrantedAuthority au = new SimpleGrantedAuthority("system:user:detail");
-        list.add(au);
+        //用户权限中间表
+        List<UserPermissionEntity> userPermission = userMapper.selectUserPermission(userId);
+
+        userPermission.forEach(item -> allPermission.forEach(p -> {
+            //判断这个人有没有这个权限
+            if (item.getPermissionId().equals(p.getId())) {
+                list.add(new SimpleGrantedAuthority(p.getPermission()));
+            }
+        }));
 
 
         //过滤权限

@@ -3,7 +3,7 @@ package com.example.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
 import com.example.system.convert.NoticeConvert;
 import com.example.system.dal.dto.notice.NoticeQueryDTO;
 import com.example.system.dal.dto.notice.NoticeSaveDTO;
@@ -59,22 +59,22 @@ public class NoticeController {
 
     @PostMapping("/saveList")
     @ApiOperation(value = "批量新增/修改")
-    public Result<List<NoticeEntity>> noticeSaveList(@RequestBody @Valid List<NoticeSaveDTO> notices) {
+    public Result<Object> noticeSaveList(@RequestBody @Valid List<NoticeSaveDTO> notices) {
         return noticeService.noticeSaveListService(notices);
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
-    public Result<Object> noticeDelete(@RequestBody List<NoticeEntity> ids) {
+    public Result<Object> noticeDelete(@RequestBody List<NoticeQueryDTO> ids) {
         ids.forEach(item -> noticeMapper.deleteById(item.getId()));
         return Result.success("删除成功");
     }
 
     @PostMapping("/import")
     @ApiOperation(value = "导入")
-    public Result<List<NoticeEntity>> noticeImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
+    public Result<Object> noticeImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
 
-        List<NoticeSaveDTO> noticeList = NoticeConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), NoticeExportVO.class));
+        List<NoticeSaveDTO> noticeList = NoticeConvert.INSTANCE.imports(ExcelUtils.imports(multipartFile.getInputStream(), NoticeExportVO.class));
 
         return noticeService.noticeSaveListService(noticeList);
     }
@@ -82,6 +82,6 @@ public class NoticeController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void noticeExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "消息通知.xlsx", "消息通知", NoticeExportVO.class, NoticeConvert.INSTANCE.export(noticeMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "消息通知.xlsx", "消息通知", NoticeExportVO.class, NoticeConvert.INSTANCE.export(noticeMapper.selectList(new QueryWrapper<>())));
     }
 }

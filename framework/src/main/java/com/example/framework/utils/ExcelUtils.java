@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Excel 工具类
  */
-public class Excel {
+public class ExcelUtils {
 
     /**
      * 将列表以 Excel 响应给前端

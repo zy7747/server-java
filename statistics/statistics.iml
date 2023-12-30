@@ -151,5 +151,6 @@
     <orderEntry type="library" name="Maven: com.mchange:mchange-commons-java:0.2.15" level="project" />
     <orderEntry type="module" module-name="framework" />
     <orderEntry type="module" module-name="system" />
+    <orderEntry type="module" module-name="file" />
   </component>
 </module>

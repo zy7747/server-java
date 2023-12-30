@@ -4,7 +4,6 @@ import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
 import com.example.system.dal.dto.notice.NoticeQueryDTO;
 import com.example.system.dal.dto.notice.NoticeSaveDTO;
-import com.example.system.dal.entity.NoticeEntity;
 import com.example.system.dal.vo.notice.NoticeDetailVO;
 import com.example.system.dal.vo.notice.NoticeListVO;
 import com.example.system.dal.vo.notice.NoticePageVO;
@@ -42,5 +41,5 @@ public interface NoticeService {
      * @param notice 新增/修改内容
      * @return 新增/修改后数据
      */
-    Result<List<NoticeEntity>> noticeSaveListService(List<NoticeSaveDTO> notice);
+    Result<Object> noticeSaveListService(List<NoticeSaveDTO> notice);
 }

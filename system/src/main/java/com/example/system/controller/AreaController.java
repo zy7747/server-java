@@ -3,7 +3,7 @@ package com.example.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
 import com.example.system.convert.AreaConvert;
 import com.example.system.dal.dto.area.AreaQueryDTO;
 import com.example.system.dal.dto.area.AreaSaveDTO;
@@ -74,6 +74,6 @@ public class AreaController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void areaExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "地区.xlsx", "地区", AreaExportVO.class, AreaConvert.INSTANCE.export(areaMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "地区.xlsx", "地区", AreaExportVO.class, AreaConvert.INSTANCE.export(areaMapper.selectList(new QueryWrapper<>())));
     }
 }

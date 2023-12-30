@@ -17,6 +17,7 @@ public class VideoSaveDTO extends BaseParamsDTO {
     /**
      * 父节点id
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
     @ApiModelProperty(value = "父节点id")
     private Long parentId;
     /**
@@ -65,9 +66,9 @@ public class VideoSaveDTO extends BaseParamsDTO {
     @ApiModelProperty(value = "标签")
     private String label;
     /**
-     * 作者名称
+     * 作者
      */
-    @ApiModelProperty(value = "作者名称")
+    @ApiModelProperty(value = "作者")
     private String author;
     /**
      * 季
@@ -80,12 +81,21 @@ public class VideoSaveDTO extends BaseParamsDTO {
     @ApiModelProperty(value = "集")
     private Integer episode;
     /**
+     * 视频存储节点
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
+    @ApiModelProperty(value = "视频存储节点")
+    private Long savePath;
+    /**
+     * 是否是集合
+     */
+    @ApiModelProperty(value = "是否是集合")
+    private Integer isCollection;
+    /**
      * 时长
      */
     @ApiModelProperty(value = "时长")
     private Integer duration;
-   
-    
     /**
      * 播放量
      */

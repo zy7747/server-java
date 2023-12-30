@@ -92,12 +92,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     public Result<UserDetailVO> detailService(Long id) {
         //从关联表中获取角色
         ArrayList<Long> roles = new ArrayList<>();
+        ArrayList<Long> permissions = new ArrayList<>();
 
         userMapper.selectUserRole(id).forEach(item -> roles.add(item.getRoleId()));
+        userMapper.selectUserPermission(id).forEach(item -> permissions.add(item.getPermissionId()));
 
         UserDetailVO userDetail = UserConvert.INSTANCE.detail(userMapper.selectById(id));
 
         userDetail.setRoles(roles);
+        userDetail.setPermissions(permissions);
 
         return Result.success(userDetail);
     }
@@ -120,32 +123,64 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             return Result.error(res);
         }
 
-        StringBuilder ids = new StringBuilder();
+        //角色
         List<UserRoleEntity> UserRoleList = new ArrayList<>();
+        //权限
+        List<UserPermissionEntity> UserPermissionList = new ArrayList<>();
         //保存角色
         for (int i = 0; i < userList.size(); i++) {
+            //获取用户信息
             UserSaveDTO item = userList.get(i);
-            //先全部删除用户的角色
-            if (item.getId() != null) {
-                ids.append(item.getId()).append(",");
+            UserEntity userItem = user.get(i);
+
+            if (userItem.getId() != null) {
+                //查询用户角色
+                List<UserRoleEntity> userRoleList = userMapper.selectUserRole(userItem.getId());
+                //删除用户角色
+                if (userRoleList.size() > 0) {
+                    userMapper.deleteUserRoleById(userItem.getId());
+                }
+
+                //查询用户角色
+                List<UserPermissionEntity> permissionList = userMapper.selectUserPermission(userItem.getId());
+
+                if (permissionList.size() > 0) {
+                    userMapper.deleteUserPermissionById(userItem.getId());
+                }
             }
+
             if (item.getRoles() != null) {
                 //循环角色列表
                 for (Long role : item.getRoles()) {
                     //将角色数据塞进去
                     UserRoleEntity userRole = new UserRoleEntity();
+
                     userRole.setUserId(user.get(i).getId());
+
                     userRole.setRoleId(role);
+
                     UserRoleList.add(userRole);
                 }
             }
+
+            if (item.getPermissions() != null) {
+                //循环权限列表
+                for (Long permissions : item.getPermissions()) {
+                    //将权限数据塞进去
+                    UserPermissionEntity userPermission = new UserPermissionEntity();
+
+                    userPermission.setUserId(user.get(i).getId());
+
+                    userPermission.setPermissionId(permissions);
+
+                    UserPermissionList.add(userPermission);
+                }
+            }
         }
-        //如果之前添加过角色删除所有关联的角色
-        if (userList.get(0).getId() != null) {
-            userMapper.deleteUserRoleByIds(ids.substring(0, ids.length() - 1));
-        }
+
         //插入新的角色
         userMapper.batchInsertUserRole(UserRoleList);
+        userMapper.batchInsertUserPermission(UserPermissionList);
 
         return Result.success(user);
     }
@@ -185,7 +220,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         if (userInfo != null) {
             //1.注入token
             String Token = new JwtUtil().getToken(userInfo);
-            new JwtUtil().getTokenInfo(Token);
+            JwtUtil.getTokenInfo(Token);
             //返回个人信息
             return userInfo(loginInfo.getLoginSystem(), Token);
         } else {
@@ -209,7 +244,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
      */
     @Override
     public Result<UserInfoVO> userInfo(String loginSystem, String token) {
-        Object userId = new JwtUtil().getTokenInfo(token);
+        Object userId = JwtUtil.getTokenInfo(token);
 
         UserEntity userInfo = userMapper.selectById(userId.toString());
 

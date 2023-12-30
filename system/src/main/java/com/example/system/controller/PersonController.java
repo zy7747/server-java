@@ -3,7 +3,7 @@ package com.example.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
 import com.example.system.convert.PersonConvert;
 import com.example.system.dal.dto.person.PersonQueryDTO;
 import com.example.system.dal.dto.person.PersonSaveDTO;
@@ -74,7 +74,7 @@ public class PersonController {
     @ApiOperation(value = "导入")
     public Result<List<PersonEntity>> noticeImport(@RequestParam("file") MultipartFile multipartFile) throws Exception {
 
-        List<PersonSaveDTO> personList = PersonConvert.INSTANCE.imports(Excel.imports(multipartFile.getInputStream(), PersonExportVO.class));
+        List<PersonSaveDTO> personList = PersonConvert.INSTANCE.imports(ExcelUtils.imports(multipartFile.getInputStream(), PersonExportVO.class));
 
         return personService.personSaveListService(personList);
     }
@@ -82,6 +82,6 @@ public class PersonController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void personExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "个人信息.xlsx", "个人信息", PersonExportVO.class, PersonConvert.INSTANCE.export(personMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "个人信息.xlsx", "个人信息", PersonExportVO.class, PersonConvert.INSTANCE.export(personMapper.selectList(new QueryWrapper<>())));
     }
 }

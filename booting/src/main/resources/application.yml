@@ -36,5 +36,5 @@ mybatis-plus:
     map-underscore-to-camel-case: true #在映射实体类时候,将数据库表名和字段中下划线去掉,按照驼峰命名
 
 file:
-  path: "D:"
+  path: "E:"
 

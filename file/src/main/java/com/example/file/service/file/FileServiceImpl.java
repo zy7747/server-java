@@ -136,33 +136,41 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileEntity> impleme
         }
 
         String fileName = file.getOriginalFilename();
+        String filePath = "";
 
         if (fileName == null) {
             return Result.error("文件读取不到");
+        }
+
+        if (params.getParentId() != null) {
+            FileEntity folder = fileMapper.selectById(params.getParentId());
+            filePath = folder.getFilePath();
         }
 
         //上传成功保存文件信息
         fileInfo.setFileName(fileName);
         fileInfo.setFileSize(file.getSize());
         fileInfo.setFileType(FilenameUtils.getExtension(fileName));
-        fileInfo.setUrl(params.getPath() + "/" + fileName);
-        fileInfo.setFilePath(params.getPath() + "/" + fileName);
+
+
+        fileInfo.setUrl(filePath + "/" + fileName);
+        fileInfo.setFilePath(filePath + "/" + fileName);
         fileInfo.setParentId(params.getParentId());
 
         try {
-            File directory = new File(path + params.getPath() + "/");
+            File directory = new File(path + filePath + "/");
             //如果找不到目标文件夹自动创建文件夹
             if (!directory.exists()) {
                 directory.mkdirs();
             }
             //格式 上传路径 + 上传文件名称
-            File dest = new File(path + params.getPath() + "/" + fileName);
+            File dest = new File(path + filePath + "/" + fileName);
             //文件写入路径
             file.transferTo(dest);
 
             // 将上传的文件保存到目标文件
 
-            fileMapper.insert(fileInfo);
+            this.saveOrUpdate(fileInfo);
 
             return Result.success(fileInfo);
         } catch (IOException e) {

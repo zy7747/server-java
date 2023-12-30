@@ -11,11 +11,6 @@ public class JobUtil implements Job {
     @Override
     public void execute(JobExecutionContext context) {
         String jobName = context.getJobDetail().getKey().getName();
-        //打印测试
-        if (jobName.equals("PrintJob")) {
-            new PrintJob().printTest("打印任务执行时间：");
-        }
-
         //清除没有用的数据
         if (jobName.equals("ClearDataJob")) {
             ClearDataJob clearDataJo = new ClearDataJob();

@@ -9,10 +9,12 @@ import com.example.framework.common.PageList;
 import com.example.system.dal.dto.user.UserQueryDTO;
 import com.example.system.dal.dto.user.UserSaveDTO;
 import com.example.system.dal.entity.UserEntity;
+import com.example.system.dal.entity.UserPermissionEntity;
 import com.example.system.dal.entity.UserRoleEntity;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Objects;
@@ -107,8 +109,15 @@ public interface UserMapper extends BaseMapper<UserEntity> {
     void clearUser();
 
     //批量删除中间表
-    @Delete("DELETE FROM user_role WHERE user_id IN (${ids})")
-    void deleteUserRoleByIds(String ids);
+    @Delete("DELETE FROM user_role WHERE user_id = #{userId}")
+    void deleteUserRoleById(Long userId);
+
+    //删除关角色联表的数据
+    void deleteUserRole(Long userId);
+
+    //批量删除中间表
+    @Delete("DELETE FROM user_permission WHERE user_id = #{userId}")
+    void deleteUserPermissionById(Long userId);
 
     @Insert("INSERT INTO user_role(user_id, role_id) VALUES (#{userId}, #{roleId})")
     void insertUserRole(Long userId, Long roleId);
@@ -116,9 +125,17 @@ public interface UserMapper extends BaseMapper<UserEntity> {
     //批量插入中间表数据
     void batchInsertUserRole(List<UserRoleEntity> UserRoleList);
 
+    //查询关权限联表的数据
+    @Select("SELECT * FROM user_permission WHERE user_id = #{userId}")
+    List<UserPermissionEntity> selectUserPermission(Long userId);
+
     //查询关角色联表的数据
     List<UserRoleEntity> selectUserRole(Long userId);
 
-    //删除关角色联表的数据
-    void deleteUserRole(Long userId);
+    @Insert("INSERT INTO user_permission(user_id, permission_id) VALUES (#{userId}, #{permissionId})")
+    void insertUserPermission(Long userId, Long permissionId);
+
+    //批量插入中间表数据
+    void batchInsertUserPermission(List<UserPermissionEntity> userPermissionList);
+
 }

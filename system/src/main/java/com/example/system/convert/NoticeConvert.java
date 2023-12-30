@@ -24,6 +24,8 @@ public interface NoticeConvert {
 
     List<NoticeEntity> saveList(List<NoticeSaveDTO> notices);
 
+    NoticeEntity save(NoticeSaveDTO notices);
+
     List<NoticeExportVO> export(List<NoticeEntity> notices);
 
     List<NoticeSaveDTO> imports(List<NoticeExportVO> notices);

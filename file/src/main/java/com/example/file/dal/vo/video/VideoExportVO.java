@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @ApiModel(value = "导出")
 public class VideoExportVO {
+
     /**
      * 视频名称
      */
@@ -53,9 +54,9 @@ public class VideoExportVO {
     @ExcelProperty("标签")
     private String label;
     /**
-     * 作者名称
+     * 作者
      */
-    @ExcelProperty("作者名称")
+    @ExcelProperty("作者")
     private String author;
     /**
      * 季
@@ -77,5 +78,10 @@ public class VideoExportVO {
      */
     @ExcelProperty("播放量")
     private Integer playNum;
+    /**
+     * 是否是集合
+     */
+    @ExcelProperty("是否是集合")
+    private Integer isCollection;
 
 }

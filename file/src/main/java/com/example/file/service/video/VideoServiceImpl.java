@@ -60,7 +60,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, VideoEntity> impl
 
         VideoDetailVO videoInfo = VideoConvert.INSTANCE.detail(videoMapper.selectById(id));
 
-        if ("shorts".equals(videoInfo.getType())) {
+        if (videoInfo.getIsCollection() == 0) {
             videoInfo.setVideoList(videoMapper.selectSortVideo(id));
         } else {
             videoInfo.setVideoList(videoMapper.selectVideoList(id));

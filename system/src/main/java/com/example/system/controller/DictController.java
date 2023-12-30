@@ -3,11 +3,13 @@ package com.example.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
+import com.example.system.annotation.Log;
 import com.example.system.convert.DictConvert;
 import com.example.system.dal.dto.dict.DictQueryDTO;
 import com.example.system.dal.dto.dict.DictSaveDTO;
 import com.example.system.dal.entity.DictEntity;
+import com.example.system.enums.OperateType;
 import com.example.system.mapper.DictMapper;
 import com.example.system.dal.vo.dict.DictDetailVO;
 import com.example.system.dal.vo.dict.DictExportVO;
@@ -17,7 +19,6 @@ import com.example.system.service.dict.DictService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,12 +72,14 @@ public class DictController {
 
     @PostMapping("/saveList")
     @ApiOperation(value = "批量新增/修改")
+    @Log(title = "字典新增/修改", module = "配置中心", content = "字典新增/修改", type = OperateType.INSERT)
     public Result<List<DictEntity>> dictSaveList(@RequestBody @Valid List<DictSaveDTO> dict) {
         return dictService.saveListService(dict);
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
+    @Log(title = "字典删除", module = "配置中心", content = "字典删除", type = OperateType.DELETE)
     public Result<Object> dictDelete(@RequestBody List<DictQueryDTO> ids) {
 
         ids.forEach(item -> {
@@ -100,6 +103,6 @@ public class DictController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void dictExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "字典.xlsx", "字典", DictExportVO.class, DictConvert.INSTANCE.export(dictMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "字典.xlsx", "字典", DictExportVO.class, DictConvert.INSTANCE.export(dictMapper.selectList(new QueryWrapper<>())));
     }
 }

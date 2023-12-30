@@ -112,4 +112,5 @@ public interface PersonMapper extends BaseMapper<PersonEntity> {
     default List<PersonEntity> selectList(PersonQueryDTO person) {
         return selectList(search(person));
     }
+
 }

@@ -18,6 +18,7 @@ import java.util.Set;
 @Configuration
 @MapperScan(basePackages = "com.example.*.mapper")
 public class MybatisPlusConfig {
+
     /**
      * /**
      * 配置mybatis-plus插件
@@ -31,7 +32,9 @@ public class MybatisPlusConfig {
         tableWhitelist.add("role");
         tableWhitelist.add("area");
         tableWhitelist.add("user_role");
+        tableWhitelist.add("user_permission");
         tableWhitelist.add("role_menu");
+
 
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         //多租户插件

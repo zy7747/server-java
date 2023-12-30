@@ -3,11 +3,13 @@ package com.example.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
-import com.example.framework.utils.Excel;
+import com.example.framework.utils.ExcelUtils;
+import com.example.system.annotation.Log;
 import com.example.system.convert.MenuConvert;
 import com.example.system.dal.dto.menu.MenuQueryDTO;
 import com.example.system.dal.dto.menu.MenuSaveDTO;
 import com.example.system.dal.entity.MenuEntity;
+import com.example.system.enums.OperateType;
 import com.example.system.mapper.MenuMapper;
 import com.example.system.dal.vo.menu.MenuDetailVO;
 import com.example.system.dal.vo.menu.MenuExportVO;
@@ -17,6 +19,7 @@ import com.example.system.service.menu.MenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,12 +61,15 @@ public class MenuController {
 
     @PostMapping("/saveList")
     @ApiOperation(value = "批量新增/修改")
+    @Log(title = "菜单新增/修改", module = "配置中心", content = "菜单新增/修改", type = OperateType.INSERT)
     public Result<List<MenuEntity>> menuSaveList(@RequestBody @Valid List<MenuSaveDTO> menus) {
         return menuService.saveListService(menus);
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
+    @PreAuthorize("hasAuthority('system:menu:delete')")
+    @Log(title = "菜单删除", module = "配置中心", content = "菜单删除", type = OperateType.DELETE)
     public Result<Object> menuDelete(@RequestBody List<MenuQueryDTO> ids) {
         ids.forEach(item -> {
             QueryWrapper<MenuEntity> wrapper = new QueryWrapper<>();
@@ -79,6 +85,6 @@ public class MenuController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void menuExport(HttpServletResponse response) throws IOException {
-        Excel.export(response, "菜单.xlsx", "菜单", MenuExportVO.class, MenuConvert.INSTANCE.export(menuMapper.selectList(new QueryWrapper<>())));
+        ExcelUtils.export(response, "菜单.xlsx", "菜单", MenuExportVO.class, MenuConvert.INSTANCE.export(menuMapper.selectList(new QueryWrapper<>())));
     }
 }

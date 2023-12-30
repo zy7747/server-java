@@ -1,6 +1,7 @@
 package com.example.system.dal.dto.user;
 
 import com.example.framework.dal.dto.PageParamsDTO;
+import com.example.system.annotation.Dict;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
