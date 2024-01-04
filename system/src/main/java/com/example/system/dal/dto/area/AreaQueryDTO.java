@@ -23,17 +23,32 @@ public class AreaQueryDTO extends PageParamsDTO {
      * 名称
      */
     @ApiModelProperty(value = "名称")
-    private String areaName;
+    private String name;
     /**
-     * 地址
+     * 中文名称
      */
-    @ApiModelProperty(value = "地址")
-    private String address;
+    @ApiModelProperty(value = "中文名称")
+    private String cname;
+    /**
+     * 全称
+     */
+    @ApiModelProperty(value = "全称")
+    private String fullName;
+    /**
+     * 中文全称
+     */
+    @ApiModelProperty(value = "中文全称")
+    private String fullCname;
     /**
      * 别称
      */
     @ApiModelProperty(value = "别称")
     private String otherName;
+    /**
+     * 地址
+     */
+    @ApiModelProperty(value = "地址")
+    private String address;
     /**
      * 区域类型
      */

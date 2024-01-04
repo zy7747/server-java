@@ -80,6 +80,11 @@ public interface VideoMapper extends BaseMapper<VideoEntity> {
             wrapper.eq("isCollection", video.getIsCollection());
         }
 
+        /* 按月份查询 */
+        if (video.getMonth() != null) {
+            wrapper.apply("DATE_FORMAT(create_time, '%Y-%m') = {0}", video.getMonth());
+        }
+
         //排序方式
         if (!StrUtil.hasBlank(video.getSortWay())) {
             if ("playNum".equals(video.getSortWay())) {

@@ -9,26 +9,35 @@ import lombok.Data;
 @ApiModel(value = "导出")
 public class AreaExportVO {
     /**
-     * 父节点id
-     */
-    @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
-    @ExcelProperty("父节点id")
-    private Long parentId;
-    /**
      * 名称
      */
     @ExcelProperty("名称")
-    private String areaName;
+    private String name;
     /**
-     * 地址
+     * 中文名称
      */
-    @ExcelProperty("地址")
-    private String address;
+    @ExcelProperty("中文名称")
+    private String cname;
+    /**
+     * 全称
+     */
+    @ExcelProperty("全称")
+    private String fullName;
+    /**
+     * 中文全称
+     */
+    @ExcelProperty("中文全称")
+    private String fullCname;
     /**
      * 别称
      */
     @ExcelProperty("别称")
     private String otherName;
+    /**
+     * 地址
+     */
+    @ExcelProperty("地址")
+    private String address;
     /**
      * 区域类型
      */
@@ -72,7 +81,7 @@ public class AreaExportVO {
     /**
      * 层级
      */
-    @ExcelProperty(value = "层级")
+    @ExcelProperty("层级")
     private Integer level;
     /**
      * 地区图标
@@ -84,4 +93,5 @@ public class AreaExportVO {
      */
     @ExcelProperty("描述")
     private String description;
+
 }

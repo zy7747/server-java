@@ -16,14 +16,29 @@ import java.util.List;
 public interface AreaMapper extends BaseMapper<AreaEntity> {
     default QueryWrapper<AreaEntity> search(AreaQueryDTO area) {
         QueryWrapper<AreaEntity> wrapper = new QueryWrapper<>();
-
         /* 名称 */
-        if (!StrUtil.hasBlank(area.getAreaName())) {
-            wrapper.eq("area_name", area.getAreaName());
+        if (!StrUtil.hasBlank(area.getName())) {
+            wrapper.eq("name", area.getName());
+        }
+        /* 中文名称 */
+        if (!StrUtil.hasBlank(area.getCname())) {
+            wrapper.eq("cname", area.getCname());
+        }
+        /* 全称 */
+        if (!StrUtil.hasBlank(area.getFullName())) {
+            wrapper.eq("full_name", area.getFullName());
+        }
+        /* 中文全称 */
+        if (!StrUtil.hasBlank(area.getFullCname())) {
+            wrapper.eq("full_cname", area.getFullCname());
         }
         /* 别称 */
         if (!StrUtil.hasBlank(area.getOtherName())) {
             wrapper.eq("other_name", area.getOtherName());
+        }
+        /* 地址 */
+        if (!StrUtil.hasBlank(area.getAddress())) {
+            wrapper.eq("address", area.getAddress());
         }
         /* 区域类型 */
         if (!StrUtil.hasBlank(area.getType())) {

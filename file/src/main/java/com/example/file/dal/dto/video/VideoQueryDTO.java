@@ -113,4 +113,10 @@ public class VideoQueryDTO extends PageParamsDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty(value = "创作年份")
     private Date createYear;
+
+    /**
+     * 按月查询
+     */
+    @ApiModelProperty(value = "月份")
+    private String month;
 }

@@ -1,6 +1,7 @@
 package com.example.statistics.controller;
 
 import com.example.framework.common.Result;
+import com.example.statistics.dal.dto.statistics.StatisticsDTO;
 import com.example.statistics.dal.vo.StatisticsGetVO;
 import com.example.statistics.service.statistics.StatisticsService;
 import io.swagger.annotations.Api;
@@ -26,7 +27,7 @@ public class StatisticsController {
 
     @GetMapping("/get")
     @ApiOperation(value = "统计数据")
-    public Result<StatisticsGetVO> getStatistics() {
-        return statisticsService.getStatistics();
+    public Result<StatisticsGetVO> getStatistics(StatisticsDTO statistics) {
+        return statisticsService.getStatistics(statistics);
     }
 }

@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-29T15:35:26+0800",
+    date = "2024-01-03T17:15:49+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class AreaConvertImpl implements AreaConvert {
@@ -67,9 +67,12 @@ public class AreaConvertImpl implements AreaConvert {
         areaDetailVO.setTenantId( areas.getTenantId() );
         areaDetailVO.setVersion( areas.getVersion() );
         areaDetailVO.setParentId( areas.getParentId() );
-        areaDetailVO.setAreaName( areas.getAreaName() );
-        areaDetailVO.setAddress( areas.getAddress() );
+        areaDetailVO.setName( areas.getName() );
+        areaDetailVO.setCname( areas.getCname() );
+        areaDetailVO.setFullName( areas.getFullName() );
+        areaDetailVO.setFullCname( areas.getFullCname() );
         areaDetailVO.setOtherName( areas.getOtherName() );
+        areaDetailVO.setAddress( areas.getAddress() );
         areaDetailVO.setType( areas.getType() );
         areaDetailVO.setCode( areas.getCode() );
         areaDetailVO.setAxis( areas.getAxis() );
@@ -131,9 +134,12 @@ public class AreaConvertImpl implements AreaConvert {
         areaPageVO.setTenantId( areaEntity.getTenantId() );
         areaPageVO.setVersion( areaEntity.getVersion() );
         areaPageVO.setParentId( areaEntity.getParentId() );
-        areaPageVO.setAreaName( areaEntity.getAreaName() );
-        areaPageVO.setAddress( areaEntity.getAddress() );
+        areaPageVO.setName( areaEntity.getName() );
+        areaPageVO.setCname( areaEntity.getCname() );
+        areaPageVO.setFullName( areaEntity.getFullName() );
+        areaPageVO.setFullCname( areaEntity.getFullCname() );
         areaPageVO.setOtherName( areaEntity.getOtherName() );
+        areaPageVO.setAddress( areaEntity.getAddress() );
         areaPageVO.setType( areaEntity.getType() );
         areaPageVO.setCode( areaEntity.getCode() );
         areaPageVO.setAxis( areaEntity.getAxis() );
@@ -180,9 +186,12 @@ public class AreaConvertImpl implements AreaConvert {
         areaListVO.setTenantId( areaEntity.getTenantId() );
         areaListVO.setVersion( areaEntity.getVersion() );
         areaListVO.setParentId( areaEntity.getParentId() );
-        areaListVO.setAreaName( areaEntity.getAreaName() );
-        areaListVO.setAddress( areaEntity.getAddress() );
+        areaListVO.setName( areaEntity.getName() );
+        areaListVO.setCname( areaEntity.getCname() );
+        areaListVO.setFullName( areaEntity.getFullName() );
+        areaListVO.setFullCname( areaEntity.getFullCname() );
         areaListVO.setOtherName( areaEntity.getOtherName() );
+        areaListVO.setAddress( areaEntity.getAddress() );
         areaListVO.setType( areaEntity.getType() );
         areaListVO.setCode( areaEntity.getCode() );
         areaListVO.setAxis( areaEntity.getAxis() );
@@ -216,9 +225,12 @@ public class AreaConvertImpl implements AreaConvert {
         areaEntity.setTenantId( areaSaveDTO.getTenantId() );
         areaEntity.setVersion( areaSaveDTO.getVersion() );
         areaEntity.setParentId( areaSaveDTO.getParentId() );
-        areaEntity.setAreaName( areaSaveDTO.getAreaName() );
-        areaEntity.setAddress( areaSaveDTO.getAddress() );
+        areaEntity.setName( areaSaveDTO.getName() );
+        areaEntity.setCname( areaSaveDTO.getCname() );
+        areaEntity.setFullName( areaSaveDTO.getFullName() );
+        areaEntity.setFullCname( areaSaveDTO.getFullCname() );
         areaEntity.setOtherName( areaSaveDTO.getOtherName() );
+        areaEntity.setAddress( areaSaveDTO.getAddress() );
         areaEntity.setType( areaSaveDTO.getType() );
         areaEntity.setCode( areaSaveDTO.getCode() );
         areaEntity.setAxis( areaSaveDTO.getAxis() );
@@ -241,10 +253,12 @@ public class AreaConvertImpl implements AreaConvert {
 
         AreaExportVO areaExportVO = new AreaExportVO();
 
-        areaExportVO.setParentId( areaEntity.getParentId() );
-        areaExportVO.setAreaName( areaEntity.getAreaName() );
-        areaExportVO.setAddress( areaEntity.getAddress() );
+        areaExportVO.setName( areaEntity.getName() );
+        areaExportVO.setCname( areaEntity.getCname() );
+        areaExportVO.setFullName( areaEntity.getFullName() );
+        areaExportVO.setFullCname( areaEntity.getFullCname() );
         areaExportVO.setOtherName( areaEntity.getOtherName() );
+        areaExportVO.setAddress( areaEntity.getAddress() );
         areaExportVO.setType( areaEntity.getType() );
         areaExportVO.setCode( areaEntity.getCode() );
         areaExportVO.setAxis( areaEntity.getAxis() );

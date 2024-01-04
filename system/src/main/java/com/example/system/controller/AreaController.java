@@ -53,7 +53,6 @@ public class AreaController {
 
     @GetMapping("/detail")
     @ApiOperation(value = "详情")
-    @PreAuthorize("hasAuthority('system:area:detail')")
     public Result<AreaDetailVO> areaDetail(Long id) {
         return areaService.areaDetailService(id);
     }

@@ -149,7 +149,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
                 }
             }
 
-            if (item.getRoles() != null) {
+            if (item.getRoles() != null && item.getRoles().size() > 0) {
                 //循环角色列表
                 for (Long role : item.getRoles()) {
                     //将角色数据塞进去
@@ -163,7 +163,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
                 }
             }
 
-            if (item.getPermissions() != null) {
+            if (item.getPermissions() != null && item.getPermissions().size() > 0) {
                 //循环权限列表
                 for (Long permissions : item.getPermissions()) {
                     //将权限数据塞进去
@@ -179,9 +179,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         }
 
         //插入新的角色
-        userMapper.batchInsertUserRole(UserRoleList);
-        userMapper.batchInsertUserPermission(UserPermissionList);
+        if (UserRoleList.size() > 0) {
+            userMapper.batchInsertUserRole(UserRoleList);
+        }
 
+        if (UserPermissionList.size() > 0) {
+            userMapper.batchInsertUserPermission(UserPermissionList);
+        }
         return Result.success(user);
     }
 

@@ -20,15 +20,34 @@ public class StatisticsGetVO {
     private Integer videoTotal;
 
     /**
-     * 字典总数
+     * 人员总数
      */
-    @ApiModelProperty(value = "字典总数")
-    private Integer DictTotal;
+    @ApiModelProperty(value = "人员总数")
+    private Integer personTotal;
+
+    /**
+     * 文件总数
+     */
+    @ApiModelProperty(value = "文件总数")
+    private Integer fileTotal;
 
     /**
      * 视频类型统计
      */
     @ApiModelProperty(value = "视频类型统计")
     private Object videoType;
+
+    /**
+     * 文件类型统计
+     */
+    @ApiModelProperty(value = "文件类型统计")
+    private Object fileType;
+
+    /**
+     * 用户性别统计
+     */
+    @ApiModelProperty(value = "用户性别统计")
+    private Object sex;
+
 }
 

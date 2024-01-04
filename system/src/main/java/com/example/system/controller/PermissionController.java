@@ -36,6 +36,7 @@ import java.util.List;
 public class PermissionController {
     @Resource
     PermissionService permissionService;
+
     @Resource
     PermissionMapper permissionMapper;
 
