@@ -232,11 +232,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         }
     }
 
+    //向下查找
     public void getTree(List<MenuEntity> menus, Long pid, List<MenuEntity> systemMenu) {
         for (MenuEntity menu : menus) {
             if (pid.equals(menu.getParentId())) {
                 systemMenu.add(menu);
                 getTree(menus, menu.getId(), systemMenu);
+            }
+        }
+    }
+
+    //向上查找
+    public void findMenu(List<MenuEntity> menuList, Long id, List<MenuEntity> menus) {
+        for (MenuEntity menu : menuList) {
+            if (id.equals(menu.getId())) {
+                menus.add(menu);
+                if (menu.getParentId() != null) {
+                    findMenu(menuList, menu.getParentId(), menus);
+                }
             }
         }
     }
@@ -282,17 +295,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
                 menus.addAll(menuList);
                 //如果没有
             } else {
+                //先找到这个人所有的菜单
                 roleMenuList.forEach(menuItem -> {
-
-                    MenuEntity menuInfo = menuList.stream().filter(c -> c.getId().equals(menuItem.getMenuId())).collect(Collectors.toList()).get(0);
                     //判断这个人有没有这个菜单权限
                     if (menuItem.getRoleId().equals(items.getRoleId())) {
-                        menus.add(menuInfo);
+                        //  在把这个人的菜单菜向上查找父级并加入菜单
+                        findMenu(menuList, menuItem.getMenuId(), menus);
                     }
                 });
             }
-
-
         });
 
 
