@@ -23,7 +23,7 @@ public interface DictMapper extends BaseMapper<DictEntity> {
 
         /* 字典名称 */
         if (!StrUtil.hasBlank(dict.getDictName())) {
-            wrapper.eq("dict_name", dict.getDictName());
+            wrapper.like("dict_name", dict.getDictName());
         }
         /* 字典编码 */
         if (!StrUtil.hasBlank(dict.getDictCode())) {
