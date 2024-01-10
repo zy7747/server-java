@@ -15,7 +15,7 @@ CREATE TABLE `video`
     `author`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT NULL COMMENT '作者',
     `season`        int                                                            DEFAULT NULL COMMENT '季',
     `episode`       int                                                            DEFAULT NULL COMMENT '集',
-    `play_num`      int                                                            DEFAULT NULL COMMENT '播放量',
+    `play_num`      int                                                            DEFAULT '0' COMMENT '播放量',
     `is_collection` bit(1)  NOT NULL                                               DEFAULT b'0' COMMENT '是否是集合',
     `duration`      datetime                                                       DEFAULT NULL COMMENT '时长',
     `create_year`   datetime                                                       DEFAULT NULL COMMENT '创作年份',

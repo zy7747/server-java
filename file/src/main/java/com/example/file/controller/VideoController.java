@@ -23,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -64,6 +65,13 @@ public class VideoController {
     @ApiOperation(value = "批量新增/修改")
     @Log(title = "视频新增/修改", module = "文件管理", content = "视频新增/修改", type = OperateType.INSERT)
     public Result<List<VideoEntity>> videoSaveList(@RequestBody @Valid List<VideoSaveDTO> videos) {
+        return videoService.saveListService(videos);
+    }
+
+    @PostMapping("/videoUpload")
+    @ApiOperation(value = "视频上传/保存")
+    @Log(title = "视频上传/保存", module = "文件管理", content = "视频上传/保存", type = OperateType.INSERT)
+    public Result<List<VideoEntity>> videoUpload(@RequestParam("file") MultipartFile file, @RequestBody @Valid List<VideoSaveDTO> videos) {
         return videoService.saveListService(videos);
     }
 

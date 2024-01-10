@@ -51,6 +51,7 @@ public class FileController {
 
     @PostMapping("/upload")
     @ApiOperation(value = "文件上传")
+    @Log(title = "文件上传", module = "文件管理", content = "文件上传", type = OperateType.INSERT)
     public Result<FileEntity> upload(@RequestParam("file") MultipartFile file, FileUploadDTO params) {
         return fileService.uploadService(file, params);
     }
