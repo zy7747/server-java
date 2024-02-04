@@ -42,7 +42,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, DictEntity> impleme
      */
     @Override
     public Result<List<DictListVO>> listService(DictQueryDTO dict) {
-        return Result.success(DictConvert.INSTANCE.list(dictMapper.selectList(dict)));
+        return Result.success(DictConvert.INSTANCE.list(dictMapper.getList(dict)));
     }
 
     /**

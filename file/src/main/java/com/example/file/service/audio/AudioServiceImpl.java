@@ -1,5 +1,6 @@
 package com.example.file.service.audio;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.framework.common.PageList;
 import com.example.framework.common.Result;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@DS("file")
 public class AudioServiceImpl extends ServiceImpl<AudioMapper, AudioEntity> implements AudioService {
     @Resource
     AudioMapper audioMapper;

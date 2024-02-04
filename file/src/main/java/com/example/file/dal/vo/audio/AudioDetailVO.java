@@ -1,6 +1,7 @@
 package com.example.file.dal.vo.audio;
 
 import com.example.framework.dal.vo.BaseParamsVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class AudioDetailVO extends BaseParamsVO {
     /**
      * 音频存储节点
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//雪花算法丢失精度问题
     @ApiModelProperty(value = "音频存储节点")
     private Long savePath;
     /**

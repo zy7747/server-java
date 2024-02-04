@@ -21,7 +21,7 @@ public interface VideoMapper extends BaseMapper<VideoEntity> {
 
         /* 视频名称 */
         if (!StrUtil.hasBlank(video.getVideoName())) {
-            wrapper.eq("video_name", video.getVideoName());
+            wrapper.like("video_name", video.getVideoName());
         }
         /* 视频标题 */
         if (!StrUtil.hasBlank(video.getTitle())) {

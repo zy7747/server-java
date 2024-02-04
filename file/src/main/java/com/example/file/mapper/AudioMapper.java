@@ -37,7 +37,7 @@ public interface AudioMapper extends BaseMapper<AudioEntity> {
         }
         /* 音频类型 */
         if (!StrUtil.hasBlank(audio.getAudioType())) {
-            wrapper.eq("video_type", audio.getAudioType());
+            wrapper.eq("audio_type", audio.getAudioType());
         }
         /* 音频简介 */
         if (!StrUtil.hasBlank(audio.getProfile())) {

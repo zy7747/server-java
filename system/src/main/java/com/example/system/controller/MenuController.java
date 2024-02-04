@@ -20,6 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,7 @@ import java.util.List;
 public class MenuController {
     @Resource
     MenuService menuService;
+
     @Resource
     MenuMapper menuMapper;
 
@@ -66,20 +68,21 @@ public class MenuController {
         return menuService.saveListService(menus);
     }
 
+    @Transactional
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除")
     @PreAuthorize("hasAuthority('system:menu:delete')")
     @Log(title = "菜单删除", module = "配置中心", content = "菜单删除", type = OperateType.DELETE)
     public Result<Object> menuDelete(@RequestBody List<MenuQueryDTO> ids) {
-        ids.forEach(item -> {
-            QueryWrapper<MenuEntity> wrapper = new QueryWrapper<>();
-            MenuEntity menu = menuMapper.selectOne(wrapper.eq("parent_id", item.getId()));
-            if (menu == null) {
-                menuMapper.deleteRoleMenu(item.getId());
+        try {
+            ids.forEach(item -> {
                 menuMapper.deleteById(item.getId());
-            }
-        });
-        return Result.success("删除成功");
+                menuMapper.deleteRoleMenu(item.getId());
+            });
+            return Result.success("删除成功");
+        } catch (Exception e) {
+            return Result.error(e);
+        }
     }
 
     @GetMapping("/export")

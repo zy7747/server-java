@@ -58,6 +58,9 @@ public interface DictMapper extends BaseMapper<DictEntity> {
             wrapper.eq("status", dict.getStatus());
         }
         wrapper.orderByDesc("create_time");
+
+        wrapper.isNull("parent_id");
+
         return wrapper;
     }
 
@@ -69,7 +72,7 @@ public interface DictMapper extends BaseMapper<DictEntity> {
     }
 
     //列表查询
-    default List<DictEntity> selectList(DictQueryDTO dict) {
+    default List<DictEntity> getList(DictQueryDTO dict) {
         return selectList(search(dict));
     }
 
