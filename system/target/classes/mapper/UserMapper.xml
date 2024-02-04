@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.system.mapper.UserMapper">
+
+    <select id="selectUserRole" resultType="com.example.system.dal.entity.UserRoleEntity">
+        SELECT *
+        FROM user_role
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="batchInsertUserRole" parameterType="com.example.system.dal.entity.UserRoleEntity">
+        INSERT INTO user_role(user_id, role_id) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userId}, #{item.roleId})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsertUserPermission" parameterType="com.example.system.dal.entity.UserPermissionEntity">
+        INSERT INTO user_permission(user_id, permission_id) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userId}, #{item.permissionId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteUserRole">
+        DELETE
+        FROM user_role
+        WHERE user_id = #{user_id}
+    </delete>
+</mapper>

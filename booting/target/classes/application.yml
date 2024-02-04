@@ -1,0 +1,40 @@
+spring:
+  #数据库链接
+  datasource:
+    dynamic:
+      primary: system #设置默认的数据源或者数据源组,默认值即为system
+      strict: false
+      datasource:
+        system:
+          url: jdbc:mysql://localhost:3306/server?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+        file:
+          url: jdbc:mysql://localhost:3306/file?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+  servlet:
+    multipart:
+      max-file-size: 99999MB
+      max-request-size: 99999MB
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0
+
+server:
+  #端口号
+  port: 8080
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml # 自定义xml文件路径
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true #在映射实体类时候,将数据库表名和字段中下划线去掉,按照驼峰命名
+
+file:
+  path: "E:"
+
