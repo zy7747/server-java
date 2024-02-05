@@ -2,6 +2,9 @@ CREATE TABLE `page`
 (
     `id`          BIGINT  NOT NULL COMMENT 'id',
     `menu_id`     BIGINT                                                       DEFAULT NULL COMMENT '页面id',
+    `title`       VARCHAR(64) COLLATE utf8mb4_unicode_ci                       DEFAULT NULL COMMENT '标题',
+    `api`         VARCHAR(32) COLLATE utf8mb4_unicode_ci                       DEFAULT NULL COMMENT '接口',
+    `permission`  VARCHAR(32) COLLATE utf8mb4_unicode_ci                       DEFAULT NULL COMMENT '权限',
     `content`     text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT '页面内容',
     `status`      VARCHAR(32) COLLATE utf8mb4_unicode_ci                       DEFAULT NULL COMMENT '状态',
     `remark`      VARCHAR(512) COLLATE utf8mb4_unicode_ci                      DEFAULT NULL COMMENT '备注',

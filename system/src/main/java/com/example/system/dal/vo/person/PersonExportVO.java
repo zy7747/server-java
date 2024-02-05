@@ -94,7 +94,7 @@ public class PersonExportVO {
     /**
      * 出生日期
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @ExcelProperty("出生日期")
     private Date birthDate;
 }

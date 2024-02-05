@@ -18,6 +18,21 @@ public class PageDetailVO extends BaseParamsVO {
     @ApiModelProperty(value = "页面id")
     private Long menuId;
     /**
+     * 标题
+     */
+    @ApiModelProperty(value = "标题")
+    private String title;
+    /**
+     * 接口
+     */
+    @ApiModelProperty(value = "接口")
+    private String api;
+    /**
+     * 权限
+     */
+    @ApiModelProperty(value = "权限")
+    private String permission;
+    /**
      * 页面内容
      */
     @ApiModelProperty(value = "页面内容")

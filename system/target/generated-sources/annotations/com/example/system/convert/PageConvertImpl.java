@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-02-04T15:46:33+0800",
+    date = "2024-02-05T16:38:56+0800",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class PageConvertImpl implements PageConvert {
@@ -67,6 +67,9 @@ public class PageConvertImpl implements PageConvert {
         pageDetailVO.setTenantId( pages.getTenantId() );
         pageDetailVO.setVersion( pages.getVersion() );
         pageDetailVO.setMenuId( pages.getMenuId() );
+        pageDetailVO.setTitle( pages.getTitle() );
+        pageDetailVO.setApi( pages.getApi() );
+        pageDetailVO.setPermission( pages.getPermission() );
         pageDetailVO.setContent( pages.getContent() );
 
         return pageDetailVO;
@@ -132,6 +135,9 @@ public class PageConvertImpl implements PageConvert {
         pagePageVO.setTenantId( pageEntity.getTenantId() );
         pagePageVO.setVersion( pageEntity.getVersion() );
         pagePageVO.setMenuId( pageEntity.getMenuId() );
+        pagePageVO.setTitle( pageEntity.getTitle() );
+        pagePageVO.setApi( pageEntity.getApi() );
+        pagePageVO.setPermission( pageEntity.getPermission() );
         pagePageVO.setContent( pageEntity.getContent() );
 
         return pagePageVO;
@@ -168,6 +174,9 @@ public class PageConvertImpl implements PageConvert {
         pageListVO.setTenantId( pageEntity.getTenantId() );
         pageListVO.setVersion( pageEntity.getVersion() );
         pageListVO.setMenuId( pageEntity.getMenuId() );
+        pageListVO.setTitle( pageEntity.getTitle() );
+        pageListVO.setApi( pageEntity.getApi() );
+        pageListVO.setPermission( pageEntity.getPermission() );
         pageListVO.setContent( pageEntity.getContent() );
 
         return pageListVO;
@@ -191,6 +200,9 @@ public class PageConvertImpl implements PageConvert {
         pageEntity.setTenantId( pageSaveDTO.getTenantId() );
         pageEntity.setVersion( pageSaveDTO.getVersion() );
         pageEntity.setMenuId( pageSaveDTO.getMenuId() );
+        pageEntity.setTitle( pageSaveDTO.getTitle() );
+        pageEntity.setApi( pageSaveDTO.getApi() );
+        pageEntity.setPermission( pageSaveDTO.getPermission() );
         pageEntity.setContent( pageSaveDTO.getContent() );
 
         return pageEntity;
