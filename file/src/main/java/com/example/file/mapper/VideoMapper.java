@@ -46,6 +46,8 @@ public interface VideoMapper extends BaseMapper<VideoEntity> {
         /* 视频类型 */
         if (!StrUtil.hasBlank(video.getVideoType())) {
             wrapper.eq("video_type", video.getVideoType());
+        } else {
+            //wrapper.ne("video_type", "18+");
         }
         /* 视频简介 */
         if (!StrUtil.hasBlank(video.getProfile())) {

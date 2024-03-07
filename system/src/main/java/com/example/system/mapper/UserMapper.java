@@ -89,7 +89,6 @@ public interface UserMapper extends BaseMapper<UserEntity> {
         }
 
         return "新增成功";
-
     }
 
     //分页
